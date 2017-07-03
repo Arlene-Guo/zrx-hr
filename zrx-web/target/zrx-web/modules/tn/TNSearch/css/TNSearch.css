@@ -1,0 +1,60 @@
+/*TNsearch 控件专用css文件*/
+
+.searchDiv{
+        white-space: normal;
+        z-index: 100001; 
+        position: absolute;
+        border: 1px solid rgba(82, 168, 236, 0.8);
+        border-radius: 3px 3px 3px 3px;
+        outline: 0px none;
+        word-wrap: break-word;
+        width: 250px;
+        background-color: rgb(255, 255, 255);
+        display: none;
+        list-style: none outside none;
+        margin-top: -5px;
+        padding: 5px;
+        font-size: 13px;
+        color: #333333;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: normal;
+        text-align: left;
+};
+.searchList{
+        -moz-column-count:1;
+        overflow-y: auto;
+        list-style: none outside none;
+        padding: 0 2px 2px;
+        margin: 1px 0;
+        font-size: 13px;
+}
+.searchRes {
+    padding: 5px;
+}
+.ellipsis {
+    float: right; 
+    font-size: 12px; 
+    max-width:100%;
+    color: #F89406
+}
+.selectedCSS {
+    background-color: rgb(51, 153, 255);
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    padding: 5px
+}
+.unSelectedCSS {
+    background-color: #FFFFFF;
+    color: #212121;
+    padding: 5px;
+    border: none;
+    border-radius: 0px
+}
+.searchDiv ul, li {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.searchDiv li {
+    line-height: 18px;
+}

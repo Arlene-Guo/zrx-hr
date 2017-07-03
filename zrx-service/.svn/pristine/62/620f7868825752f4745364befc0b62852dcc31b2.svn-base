@@ -1,0 +1,18 @@
+# 当前环境
+spring.profiles.active=sit
+
+# 文件服务器的地址
+file.server.url=http://10.10.33.144/filebroker/upload
+
+# 产品类型
+zrx.productType=83
+
+#婚庆的品牌编号
+zrx.brandid=26
+
+pga.new.order=http://10.10.32.119:12401/pga-web/nws/order/id
+
+fab.org=http://fab.sit.org/interface/cust
+
+#M站支付MD5秘钥
+mstation.payment.md5key=&*()%sd76@#$Dfs^YsfUJKDs

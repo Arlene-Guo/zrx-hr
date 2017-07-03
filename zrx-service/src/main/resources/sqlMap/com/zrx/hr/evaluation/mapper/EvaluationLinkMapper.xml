@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.evaluation.mapper.EvaluationLinkMapper">
+
+    <sql id="evaluationLinkTable">
+		 evaluation_link
+	</sql>
+	
+	<sql id="evaluationLinkFields">
+		`id`, `batchid`, `link1`, `dutiestype`,  `create_time`, `del_flag`
+	</sql>
+	
+	<sql id="searchEvaluationLinkCondition">
+		<if test="evaluationLink.id != null">AND `id` = #{evaluationLink.id}</if>
+		<if test="evaluationLink.dutiestype != null">AND `dutiestype` = #{evaluationLink.dutiestype}</if>
+		<if test="evaluationLink.delFlag != null">AND `del_flag` = #{evaluationLink.delFlag}</if>
+	</sql>
+	
+	<sql id="evaluationLinklimitCondition">
+		<if test="evaluationLink.isPage == null">
+			LIMIT #{evaluationLink.start}, #{evaluationLink.limit}
+		</if>
+	</sql>
+	
+	<resultMap id="evaluationLink" type="com.zrx.hr.evaluation.domain.vo.EvaluationLink"></resultMap>
+	
+	<insert id="insertBatch">
+        INSERT IGNORE INTO <include refid="evaluationLinkTable"></include>
+            (`batchid`, `link1`, `dutiestype`,  `create_time`) 
+        VALUES
+          <foreach collection="records" separator="," item="record">
+            (
+			#{record.batchid}, 
+			#{record.link1}, 
+			#{record.dutiestype},				 
+			NOW()
+			)
+          </foreach>
+    </insert>
+	
+	<insert id="saveOrUpdateEvaluationLink" keyProperty="id" useGeneratedKeys="true">
+		<selectKey keyProperty="count" resultType="java.lang.Integer" order="BEFORE">
+			SELECT COUNT(1) FROM <include refid="evaluationLinkTable"></include>
+			WHERE id = #{evaluationLink.id}
+		</selectKey>
+		<if test="count == 0">
+			INSERT INTO <include refid="evaluationLinkTable"></include> 
+			(`batchid`, `link1`, `dutiestype`, `userState`, `create_time`)
+			VALUES (
+				#{evaluationLink.batchid}, 
+				#{evaluationLink.link1}, 
+				#{evaluationLink.dutiestype},
+				#{evaluationLink.userState},				 
+				NOW()
+			)
+		</if>
+		<if test="count > 0">
+			UPDATE <include refid="evaluationLinkTable"></include> 
+			<set>
+			`op_time` = NOW(),
+			<if test="evaluationLink.batchid != null">`batchid` = #{evaluationLink.batchid},</if>
+			<if test="evaluationLink.link1 != null">`link1` = #{evaluationLink.link1},</if>
+			<if test="evaluationLink.userState != null">`userState` = #{evaluationLink.userState},</if>
+			<if test="evaluationLink.dutiestype != null">`dutiestype` = #{evaluationLink.dutiestype},</if>
+			<if test="evaluationLink.delFlag != null">`del_flag` = #{evaluationLink.delFlag},</if>
+			</set>
+			WHERE id = #{evaluationLink.id}
+		</if>
+	</insert>
+	
+	<select id="findDutiesTypeCount" resultType="java.lang.Integer">
+        SELECT COUNT(1) 
+        FROM  <include refid="evaluationLinkTable"></include> 
+        WHERE del_flag=0 AND userState = 0
+        GROUP BY dutiestype     
+    </select>
+	
+	 <select id="getEvaluationLink" resultMap="evaluationLink">
+        SELECT
+           <include refid="evaluationLinkFields"></include>
+        FROM  <include refid="evaluationLinkTable"></include>
+        where 1=1 AND del_flag=0 AND userState = 0
+        	<include refid="searchEvaluationLinkCondition"></include>        		
+        ORDER BY `id` desc
+        LIMIT 0, 1
+    </select>
+    
+</mapper>

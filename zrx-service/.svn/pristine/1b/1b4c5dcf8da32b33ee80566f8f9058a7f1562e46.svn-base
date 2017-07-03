@@ -1,0 +1,16 @@
+# 查询促销信息 
+PMF.EXCUTE.FindActivityController.ordersValidlists=http://10.10.30.185:7271/pmf-web/find-act/order-validlists
+# 查询资源详情
+RES.NM.ResourceController.saveResource=http://10.10.30.79:8580/phoenixResource/manage/resource/save
+# 下单接口
+NWS.OrderController.addOrder=http://10.10.30.50:6080/pga-web/nws/order/add
+# 订单详情接口
+NWS.OrderController.queryOrderDetail=http://10.10.30.50:6080/pga-web/nws/order/id
+# 婚庆取消或者参加活动接口
+NWS.OrderController.cancelOrJoinPromotion=http://10.10.30.50:6080/pga-web/nws/order/cancelOrJoinPromotion
+# 添加出游人、联系人接口
+NWS.OrderController.addTourist=http://10.10.30.50:6080/pga-web/nws/order/tourist/add
+# 获取订单列表
+NWS.OrderController.queryOrders=http://10.10.30.50:6080/pga-web/nws/order/query
+# 取消订单
+NWS.OrderController.cancelOrder=http://10.10.30.50:6080/pga-web/nws/order/cancel

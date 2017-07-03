@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/H-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/H-ui.admin.css" />
+		<link rel="stylesheet" type="text/css" href="../../lib/Hui-iconfont/1.0.8/iconfont.css" />
+		<title>新增应聘者</title>
+		<script src="../../modules/importCss.js"></script>
+		<script src="../../modules/importJS.js"></script>
+	</head>
+	<body>
+		<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> <span class="command-title">招聘专员</span> <span class="c-gray en">&gt;</span> <span class="command-content">新增应聘者</span>
+			<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="recruit-add-list.html" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+		</nav>
+		<div class="container-fluid">
+			<fieldset id="tourSearch">
+				<legend>应聘者搜索</legend>
+				<div class="area">
+					<span>
+					应聘者名称：
+					<input name="intervieweeName" type="text" placeholder="" style="width:158px;"/>
+				</span>
+					<span>
+					应聘职位：
+					<select name="intervieweeDutiesName" id="intervieweeDutiesName" style="border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);width:158px;">
+						<option value="">请选择</option>
+					</select>
+					<!--<input name="intervieweeDutiesName" style="width:158px;" type="text" placeholder=""/>-->
+				</span>
+					<span>
+					添加日期：
+					<input type="text" onfocus="WdatePicker()" id="logmax" class="input-text Wdate" style="width:120px;" name="createTime">
+				</span>
+					<span>
+					<a id="tourSearchBtn" class="btn btn-primary"> <i class="icon-search"></i>
+						搜索
+					</a>
+				</span>
+				</div>
+			</fieldset>
+			<div id="list">
+				<div style="position: relative;">
+					<div id="tableList"></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../lib/layer/2.4/layer.js"></script>
+		<script type="text/javascript" src="../../static/js/H-ui.min.js"></script>
+		<script type="text/javascript" src="../../static/js/H-ui.admin.js"></script>
+		<script type="text/javascript" src="../../lib/My97DatePicker/4.8/WdatePicker.js"></script>
+		<script src="../../static/js/recruit/recruit-add-list.js"></script>
+	</body>
+</html>

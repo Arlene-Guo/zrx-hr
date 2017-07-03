@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.resume.mapper.ResumeMapper">
+
+	<sql id="resumeTable">
+		resume
+	</sql>
+	
+	<sql id="resumeFields">
+		`id`, `interviewee_name` as intervieweeName, `interviewee_phone` as intervieweePhone, `interviewee_duties_id` as intervieweeDutiesId, `interviewee_duties_name` as intervieweeDutiesName, 
+		`interviewee_mail` as intervieweeMail,`id_number` as idNumber,  `school_name` as schoolName, `resume_filename` as resumeFilename, `resume_path` as resumePath,
+		`recommended_id` as recommendedId, `recommended_name` as recommendedName, `recommended_job_number` as recommendedJobNumber,
+		`recommended_source` as recommendedSource, `create_time` as createTime,`op_time` as opTime,`del_flag` as delFlag
+	</sql>
+	
+	<sql id="searchResumeListCondition">
+		<if test="resume.id != null">AND `id` = #{resume.id}</if>
+		<if test="resume.uid != null">AND `recommended_id` = #{resume.uid}</if>
+		<if test="resume.intervieweeName != null">AND `interviewee_name` = #{resume.intervieweeName}</if>
+		<if test="resume.intervieweePhone != null">AND `interviewee_phone` = #{resume.intervieweePhone}</if>
+		<!--只需验证手机号和姓名  -->
+		<!-- <if test="resume.intervieweeMail != null">AND `interviewee_mail` = #{resume.intervieweeMail}</if> -->
+	</sql>
+	
+	<sql id="limitResumeCondition">
+		<if test="resume.isPage == null">
+			LIMIT #{resume.start}, #{resume.limit}
+		</if>
+	</sql>
+
+	<resultMap id="resume" type="com.zrx.hr.resume.domain.vo.Resume"></resultMap>
+	
+	<insert id="saveOrUpdateResume" keyProperty="id" useGeneratedKeys="true">
+		<selectKey keyProperty="count" resultType="java.lang.Integer" order="BEFORE">
+			SELECT COUNT(1) FROM <include refid="resumeTable"></include>
+			WHERE id = #{resume.id}
+		</selectKey>
+		<if test="count == 0">
+			INSERT INTO <include refid="resumeTable"></include> 
+			
+			<trim prefix="(" suffix=")" suffixOverrides="," >
+				<if test="resume.intervieweeName != null">interviewee_name,</if>
+				<if test="resume.intervieweePhone != null">interviewee_phone,</if>
+				<if test="resume.intervieweeDutiesId != null">interviewee_duties_id,</if>
+				<if test="resume.intervieweeDutiesName != null">interviewee_duties_name,</if>
+				<if test="resume.intervieweeMail != null">interviewee_mail,</if>
+				<if test="resume.idNumber != null">id_number,</if>
+				<if test="resume.schoolName != null">school_name,</if>
+				<if test="resume.resumeFilename != null">resume_filename,</if>
+				<if test="resume.resumePath != null">resume_path,</if>
+				<if test="resume.recommendedId != null">recommended_id,</if>
+				<if test="resume.recommendedName != null">recommended_name,</if>
+				<if test="resume.recommendedJobNumber != null">recommended_job_number,</if>
+				<if test="resume.recommendedSource != null">recommended_source,</if>
+				<if test="resume.idNumber != null">id_number,</if>
+				create_time
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides="," >
+				<if test="resume.intervieweeName != null">#{resume.intervieweeName},</if>
+				<if test="resume.intervieweePhone != null">#{resume.intervieweePhone},</if>
+				<if test="resume.intervieweeDutiesId != null">#{resume.intervieweeDutiesId},</if>
+				<if test="resume.intervieweeDutiesName != null">#{resume.intervieweeDutiesName},</if>
+				<if test="resume.intervieweeMail != null">#{resume.intervieweeMail},</if>
+				<!--添加身份证号码  -->
+				<if test="resume.idNumber != null">#{resume.idNumber},</if>
+				<if test="resume.schoolName != null">#{resume.schoolName},</if>
+				<if test="resume.resumeFilename != null">#{resume.resumeFilename},</if>
+				<if test="resume.resumePath != null">#{resume.resumePath},</if>
+				<if test="resume.recommendedId != null">#{resume.recommendedId},</if>
+				<if test="resume.recommendedName != null">#{resume.recommendedName},</if>
+				<if test="resume.recommendedJobNumber != null">#{resume.recommendedJobNumber},</if>
+				<if test="resume.recommendedSource != null">#{resume.recommendedSource},</if>
+				<if test="resume.idNumber != null">#{resume.idNumber},</if>
+				NOW()
+			</trim>
+		</if>
+		<if test="count > 0">
+			UPDATE <include refid="resumeTable"></include> 
+			<set>			
+			<if test="resume.intervieweeName != null">`interviewee_name` = #{resume.intervieweeName},</if>
+			<if test="resume.intervieweePhone != null">`interviewee_phone` = #{resume.intervieweePhone},</if>
+			<if test="resume.intervieweeDutiesId != null">`interviewee_duties_id` = #{resume.intervieweeDutiesId},</if>
+			<if test="resume.intervieweeDutiesName != null">`interviewee_duties_name` = #{resume.intervieweeDutiesName},</if> 
+			<if test="resume.intervieweeMail != null">`interviewee_mail` = #{resume.intervieweeMail},</if>
+			<if test="resume.schoolName != null">`school_name` = #{resume.schoolName},</if>
+			<if test="resume.idNumber != null">`id_number` = #{resume.idNumber},</if>
+			<if test="resume.resumeFilename != null">`resume_filename` = #{resume.resumeFilename},</if>
+			<if test="resume.resumePath != null">`resume_path` = #{resume.resumePath},</if>
+			<if test="resume.recommendedId != null">`recommended_id` = #{resume.recommendedId},</if>
+			<if test="resume.recommendedName != null">`recommended_name` = #{resume.recommendedName},</if>
+			<if test="resume.recommendedJobNumber != null">`recommended_job_number` = #{resume.recommendedJobNumber},</if>
+			<if test="resume.recommendedSource != null">`recommended_source` = #{resume.recommendedSource},</if>
+			<if test="resume.delFlag != null">`del_flag` = #{resume.delFlag},</if>
+			<if test="resume.idNumber != null">`id_number` = #{resume.idNumber},</if>
+			`op_time` = NOW()
+			</set>
+			WHERE id = #{resume.id}
+		</if>
+	</insert>
+	<!--新增加字段，校招，社招  -->
+	<insert id="insertResume" parameterType="com.zrx.hr.resume.domain.vo.Resume">
+			
+		<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	      SELECT LAST_INSERT_ID()
+	    </selectKey>
+		
+		INSERT INTO <include refid="resumeTable"></include> 
+		(
+			`interviewee_name`, `interviewee_phone`, `interviewee_duties_id`, `interviewee_duties_name`, 
+			`interviewee_mail`, `id_number`, `school_name`, `resume_filename`, `resume_path`,
+			`recommended_id`, `recommended_name`, `recommended_job_number`,  `recommended_source`,`create_time` 
+		)
+		VALUES (
+			#{intervieweeName}, 
+			#{intervieweePhone}, 
+			#{intervieweeDutiesId}, 
+			#{intervieweeDutiesName}, 
+			#{intervieweeMail},
+			#{idNumber},
+			#{schoolName},
+			#{resumeFilename},
+			#{resumePath},
+			#{recommendedId},
+			#{recommendedName},
+			#{recommendedJobNumber},
+			#{recommendedSource},
+			NOW()		
+		)
+	</insert>
+
+    <select id="searchResumeList" resultMap="resume">
+        SELECT
+           <include refid="resumeFields"></include>
+        FROM  <include refid="resumeTable"></include>
+        where 1=1 AND del_flag=0
+        	<include refid="searchResumeListCondition"></include>        		
+        ORDER BY `create_time` desc
+        <include refid="limitResumeCondition"></include>        
+    </select>
+    
+    <!--  
+                     根据录入时间进行排序
+    <select id="findResumeByOptime" resultMap="resume">
+        SELECT
+           <include refid="resumeFields"></include>
+        FROM  <include refid="resumeTable"></include>
+        where 1=1 AND del_flag=0
+        	<include refid="searchResumeListCondition"></include>        		
+        ORDER BY `op_time` desc
+        <include refid="limitResumeCondition"></include>        
+    </select>
+    -->       
+</mapper>

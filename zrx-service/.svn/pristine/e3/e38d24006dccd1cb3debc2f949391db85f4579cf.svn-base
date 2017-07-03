@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.user.mapper.UserRoleMapper">
+
+	<sql id="userRoleTable">
+		user_role
+	</sql>
+	
+	<sql id="userRoleDtoFields">
+		`id`, `user_name` as userName, `duties_name` as dutiesName, `job_number` as jobNumber, `role_name` as roleName, `del_flag` as delFlag
+	</sql>
+	
+	
+	<sql id="findUserIdAllByRoleIdCondition">
+		<if test="role.roleid != null">AND `roleid` = #{userRole.roleid}</if>
+	</sql>
+	
+	<sql id="limitUserRoleCondition">
+		<if test="userRole.isPage == null">
+			LIMIT #{userRole.start}, #{userRole.limit}
+		</if>
+	</sql>
+	
+	<resultMap id="users" type="com.zrx.hr.user.domain.vo.Users"></resultMap>
+
+	<resultMap id="userRole" type="com.zrx.hr.user.domain.vo.UserRole"></resultMap>
+	
+	<resultMap id="userRoleDto" type="com.zrx.hr.user.domain.dto.UserRoleDto"></resultMap>
+	
+<!-- 	<insert id="saveOrUpdateUserRole"> -->
+<!-- 		INSERT INTO <include refid="userRoleTable"></include>  -->
+<!-- 		<trim prefix="(" suffix=")" suffixOverrides="," > -->
+<!-- 			<if test="uid != null" > -->
+<!--                 uid, -->
+<!--             </if> -->
+<!--             <if test="roleid != null" > -->
+<!--                 roleid, -->
+<!--             </if> -->
+<!--             <if test="uid != null" > -->
+<!--                 uid, -->
+<!--             </if>			 -->
+<!-- 			`create_time` -->
+<!-- 		</trim> -->
+<!-- 		<trim prefix="values (" suffix=")" suffixOverrides="," > -->
+<!-- 			<if test="uid != null" > -->
+<!--                 #{uid}, -->
+<!--             </if> -->
+<!--             <if test="roleid != null" > -->
+<!--                 #{roleid}, -->
+<!--             </if> -->
+<!--             <if test="uid != null" > -->
+<!--                 #{uid}, -->
+<!--             </if>				    -->
+<!-- 			NOW() -->
+<!-- 		</trim> -->
+<!-- 		ON DUPLICATE KEY UPDATE   			 -->
+<!-- 			<if test="uid != null" > -->
+<!--                 #{uid}, -->
+<!--             </if> -->
+<!-- 			<if test="roleid != null" > -->
+<!--                 #{roleid}, -->
+<!--             </if> -->
+<!--             <if test="roleid != null" > -->
+<!--                 #{delFlag}, -->
+<!--             </if> -->
+<!-- 			`op_time` = NOW() -->
+<!-- 	</insert> -->
+	
+	
+	<insert id="saveOrUpdateUserRole">
+		INSERT INTO <include refid="userRoleTable"></include> 
+		
+		(
+			`uid`, `roleid`, `create_time`
+		)
+		VALUES (		   
+			#{uid}, 
+			#{roleid}, 
+			NOW()
+		)
+		ON DUPLICATE KEY UPDATE 
+  			`op_time` = NOW(),
+			`uid` = #{uid},
+			`roleid` = #{roleid},
+			`del_flag` = #{delFlag}
+			
+	</insert>
+	
+	<update id="UpdateUserRoleByPrimaryKeySelective" parameterType="com.zrx.hr.user.domain.vo.UserRole" >
+	    UPDATE <include refid="userRoleTable"></include> 
+	    <set> 
+			`op_time` = NOW(),
+			<if test="uid != null">
+				`uid` = #{uid},
+			</if>
+			<if test="roleid != null">
+				`roleid` = #{roleid},
+			</if>
+			<if test="delFlag != null">
+				`del_flag` = #{delFlag},
+			</if>
+		</set>	
+		WHERE id = #{id}
+  	</update>
+	
+	<select id="findUserRole" resultMap="userRoleDto">
+        SELECT
+          B.id as userRoleId,
+          B.roleid,
+		  A.id as uid,
+		  A.user_name   AS userName,
+		  A.duties_name AS dutiesName,
+		  A.job_number  AS jobNumber,
+		  C.role_name   AS roleName,
+		  B.del_flag    AS delFlag
+		FROM users A
+		  INNER JOIN user_role B
+		    ON (A.id = B.uid AND A.del_flag = 0 AND B.del_flag=0)
+		    <!-- ON (A.id = B.uid AND A.del_flag = 0) -->
+		  INNER JOIN role C
+		   	ON (B.roleid = C.id AND B.del_flag=0 AND C.del_flag=0)
+		   	<!-- ON (B.roleid = C.id AND C.del_flag=0) -->
+		where 1=1
+		<if test="userRole.id != null">AND B.`id` = #{userRole.id}</if>
+		<if test="userRole.uid != null">AND A.`id` = #{userRole.uid}</if>
+		<if test="userRole.userName != null">AND A.`user_name` = #{userRole.userName}</if>
+		<if test="userRole.jobNumber != null">AND A.`job_number` = #{userRole.jobNumber}</if>
+		<if test="userRole.roleName != null">AND C.`role_name` = #{userRole.roleName}</if>
+		<if test="userRole.delFlag != null">AND B.`del_flag` = #{userRole.delFlag}</if>
+        ORDER BY B.id desc     
+        <include refid="limitUserRoleCondition"></include> 
+    </select>
+    
+    <select id="findUserIdAllByRoleId" resultMap="users">
+        SELECT
+		  B.id,
+		  B.user_name AS userName,
+		  B.job_number as jobNumber,
+		  B.duties_number as dutiesNumber,
+		  B.duties_name as dutiesName,
+		  B.email
+		FROM user_role A
+		  INNER JOIN users B
+		    ON (A.uid = B.id AND B.del_flag=0 AND A.del_flag=0)
+		  INNER JOIN role C 
+		    ON (A.roleid = C.id AND C.del_flag=0 AND B.del_flag=0 AND A.del_flag=0)
+		WHERE 1=1
+		<if test="role.id != null">AND A.`roleid` = #{role.id}</if>
+		<if test="role.roleName != null">AND C.`role_name` = #{role.roleName}</if>
+<!-- 		<if test="role.description != null">AND C.`description` = #{role.description}</if> -->
+    </select>
+
+</mapper>

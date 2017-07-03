@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/froala_editor.min.css" rel="stylesheet" type="text/css">
+			
+		<style>
+			body {
+				text-align: center;
+			}
+			
+			section {
+				width: 80%;
+				margin: auto;
+				text-align: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<section id="editor">
+			<div id='edit' style="margin-top: 30px;">
+				
+				
+			</div>
+		</section>
+		<button class="sure">确定</button>
+		<script src="js/libs/jquery-1.11.1.min.js"></script>
+		<script src="js/froala_editor.min.js"></script>
+		<!--[if lt IE 9]>
+    <script src="../js/froala_editor_ie8.min.js"></script>
+  <![endif]-->
+		<script src="js/plugins/tables.min.js"></script>
+		<script src="js/plugins/lists.min.js"></script>
+		<script src="js/plugins/colors.min.js"></script>
+		<script src="js/plugins/media_manager.min.js"></script>
+		<script src="js/plugins/font_family.min.js"></script>
+		<script src="js/plugins/font_size.min.js"></script>
+		<script src="js/plugins/block_styles.min.js"></script>
+		<script src="js/plugins/video.min.js"></script>
+		<script>
+			$(function() {
+				$('#edit').editable({
+					inlineMode: false,
+					alwaysBlank: false,
+					language: "zh_cn",
+					theme: 'gray',
+					//模版
+					height: '200px' //高度
+				})
+			});
+			var html='';
+			html+='<p style="text-align: center;"><span style="font-size: 24px;">中融信面试邀请函</span></p>';
+			html+='<p>亲爱的：</p>';
+			html+='<p>&nbsp;&nbsp;您好！</p>';
+			html+='<p>&nbsp;&nbsp;感谢您对中融信的关注，您的经历和背景给我留下了深刻印象，为了我们能有进一步的了解，现诚邀您至我司进行面试详谈。</p>';
+			html+='<p><u>&nbsp;&nbsp;具体信息如下：</u></p>';
+			html+='<p><u></u><u>&nbsp;&nbsp;</u><b style="line-height: 22.4px;">公司名称</b><b style="line-height: 22.4px;">：</b><b style="line-height: 22.4px;"> </b>北京中融信融资担保有限公司</p>';
+			html+='<p><b>&nbsp;&nbsp;应聘职位：</b> </p>';
+			html+='<p><b>&nbsp;&nbsp;面试时间：</b> </p>';
+			html+='<p><b>&nbsp;&nbsp;面试地址：</b>北京市朝阳门外大街乙12号院昆泰国际大厦18层</p>';
+			html+='<p><b>&nbsp;&nbsp;乘车路线：</b>地铁：地铁朝阳门A口出，昆泰国际大厦16层。</p>';
+			html+='<p><b>&nbsp;&nbsp;联系人：</b> </p>';
+			html+='<p><b>&nbsp;&nbsp;联系电话：</b> </p>';
+			html+='<p><b>面试</b><b> </b><b>特别</b><b> </b><b>注意事项：</b></p>';
+			html+='<p>&nbsp;1、面试请务必准时，以体现您良好的职业素养。</p>';
+			html+='<p><b>&nbsp;&nbsp;如因突发情况不能准时参加面试，请及时和我们联系，以便调整面试时间；</b></p>';
+			html+='<p><b></b><b>&nbsp;&nbsp;如因个人原因放弃面试机会，请告知我们，今后如有合适机会我们将为您保留面试机会；</b></p>';
+			html+='<p><b>&nbsp;&nbsp;如个人无故放弃面试机会，您将不能进入我们的人才储备库，也将失去今后的面试机会。</b></p>';
+			html+='<p>&nbsp;2、请携带简历、笔和相关个人作品。</p>';
+			html+='<p>&nbsp;北京中融信融资担保有限公司</p>';
+			html+='<p>&nbsp;招聘部</p>';
+			$('#edit').append(html);
+			$('.sure').click(function(){
+				alert($('.froala-element').html())
+			})
+		</script>
+	</body>
+
+</html>

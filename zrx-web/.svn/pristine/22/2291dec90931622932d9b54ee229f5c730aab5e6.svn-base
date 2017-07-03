@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>上传图片</title>
+  <style type="text/css"></style><meta name="chromesniffer" id="chromesniffer_meta" content="{}">
+  <script type="text/javascript" src="chrome-extension://homgcnaoacgigpkkljjjekpignblkeae/detector.js"></script>
+  <script src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>
+  function uploadAlready(){
+    var data =  $(window.frames['ifrmUploadFile'].document.body).html();
+      console.log(data);
+  }
+  </script>
+</head>
+<body>
+  <form action="http://crm.tuniu.com/main.php?do=route_do_update_photo" method="POST" onsubmit="" enctype="multipart/form-data" target="ifrmUploadFile" id="upload_form">
+    <input type="file" id="file_img" name="file_img">
+    <input type="submit" value="上传" id="submit_btn" onclick="">
+    <font color="red">*</font><font size="2">上传图片大小不要超过50k！</font>
+  </form>
+  <iframe frameborder="0" name="ifrmUploadFile" style="display:block;" id="ifrmUploadFile" onload=uploadAlready()></iframe>
+</body>
+</html>

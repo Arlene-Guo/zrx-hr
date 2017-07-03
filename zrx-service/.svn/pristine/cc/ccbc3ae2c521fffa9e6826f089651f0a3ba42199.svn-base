@@ -1,0 +1,12 @@
+# 开发环境管理界面 http://10.10.30.44/PLA/TSG42/index.html
+#开发环境-AMQ地址
+#tsp.amq.address=tcp://10.10.30.42:61611
+tsp.amq.address=tcp://10.10.30.105:61611
+#开发环境-注册中心连接地址
+#tsp.registry.address=10.10.30.42:9989
+#tsp.registry.address=10.10.30.105:9989
+tsp.registry.address=bj-tspregister-master.cie.org:9989
+#开发环境-文本保存地址
+tsp.commonClient.dir=D:/
+#启动模式 0 普通模式, 1 主线程阻塞直至收到服务的回应
+tsp.clientMode=1

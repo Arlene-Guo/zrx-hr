@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.evaluation.mapper.EvaluationInfoMapper">
+
+    <sql id="evaluationInfoTable">
+		evaluation_info
+	</sql>
+	
+	<sql id="evaluationInfoTableFields">
+		`id`, `import_filename` as importFilename, `import_date` as importDate, 
+		`import_count` as importCount, `dutiestype`, `create_time` as createTime, `del_flag` as delFlag
+	</sql>
+	
+	<sql id="searchEvaluationListCondition">
+		<if test="evaluationListRequest.id != null">AND `id` = #{evaluationListRequest.id}</if>
+	</sql>
+	
+	<sql id="searchEvaluationListLimitCondition">
+		<if test="evaluationListRequest.isPage == null">
+			LIMIT #{evaluationListRequest.start}, #{evaluationListRequest.limit}
+		</if>
+	</sql>
+	
+	<resultMap id="evaluationInfo" type="com.zrx.hr.evaluation.domain.vo.EvaluationInfo"></resultMap>
+	
+	<resultMap id="evaluationDto" type="com.zrx.hr.evaluation.domain.dto.EvaluationDto"></resultMap>
+	
+	<resultMap id="dutiesTypeCountDto" type="com.zrx.hr.evaluation.domain.dto.DutiesTypeCountDto"></resultMap>
+	
+	
+	
+	<insert id="saveOrUpdateEvaluation" keyProperty="id" useGeneratedKeys="true">
+		<selectKey keyProperty="count" resultType="java.lang.Integer" order="BEFORE">
+			SELECT COUNT(1) FROM <include refid="evaluationInfoTable"></include>
+			WHERE id = #{evaluationRequest.id}
+		</selectKey>
+		<if test="count == 0">
+			INSERT INTO <include refid="evaluationInfoTable"></include> 
+			(`import_filename`, `import_date`, `import_count`, `dutiestype`, `del_flag`,`create_time`)
+			VALUES (
+				#{evaluationRequest.importFilename}, 
+				NOW(),
+				#{evaluationRequest.importCount}, 
+				#{evaluationRequest.dutiestype},
+				#{evaluationRequest.delFlag},  
+				NOW()
+			)
+		</if>
+		<if test="count > 0">
+			UPDATE <include refid="evaluationInfoTable"></include>
+			<set> 
+			`op_time` = NOW(),
+			<if test="evaluationRequest.importFilename != null">`import_filename` = #{evaluationRequest.importFilename},</if>
+			<if test="evaluationRequest.importDate != null">`import_date` = #{evaluationRequest.importDate},</if>
+			<if test="evaluationRequest.importCount != null">`import_count` = #{evaluationRequest.importCount},</if>
+			<if test="evaluationRequest.dutiestype != null">`dutiestype` = #{evaluationRequest.dutiestype},</if>
+			<if test="evaluationRequest.delFlag != null">`del_flag` = #{evaluationRequest.delFlag},</if>
+			</set>
+			WHERE id = #{evaluationRequest.id}
+		</if>
+	</insert>
+	
+	 <select id="findEvaluation" resultMap="evaluationDto">
+        SELECT
+           <include refid="evaluationInfoTableFields"></include>
+        FROM  <include refid="evaluationInfoTable"></include>
+        where 1=1 AND del_flag=0
+        	<include refid="searchEvaluationListCondition"></include>        		
+        ORDER BY `create_time` desc
+        <include refid="searchEvaluationListLimitCondition"></include>        
+    </select>
+    
+<!--     <select id="findDutiesTypeCount" resultType="java.lang.Integer"> -->
+<!--         SELECT COUNT(1)  -->
+<!--         FROM  <include refid="evaluationInfoTable"></include>  -->
+<!--         WHERE del_flag=0 -->
+<!--         GROUP BY dutiestype      -->
+<!--     </select> -->
+           
+</mapper>

@@ -1,0 +1,62 @@
+package com.zrx.hr.common.web.filter;
+
+import java.io.IOException;  
+import java.io.PrintWriter;  
+  
+
+import javax.servlet.FilterChain;  
+import javax.servlet.ServletException;  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+  
+
+import org.springframework.web.filter.OncePerRequestFilter;  
+
+import com.zrx.hr.common.constants.ErrorCode;
+import com.zrx.hr.common.util.json.JsonUtil;
+import com.zrx.hr.common.util.response.ResponseBase64Util;
+import com.zrx.hr.common.util.response.ResponseUtil;
+import com.zrx.hr.user.domain.response.LoginResponse;
+  
+public class SessionFilter extends OncePerRequestFilter {  
+  
+    @Override  
+    protected void doFilterInternal(HttpServletRequest request,  
+            HttpServletResponse response, FilterChain filterChain)  
+            throws ServletException, IOException {  
+  
+        // 不过滤的uri  
+        String[] notFilter = new String[] { "login", "logout", "html", "jsp" };  
+  
+        // 请求的uri  
+        String uri = request.getRequestURI();  
+  
+        // 是否过滤  
+        boolean doFilter = true;  
+        for (String s : notFilter) {  
+            if (uri.indexOf(s) != -1) {  
+                // 如果uri中包含不过滤的uri，则不进行过滤  
+                doFilter = false;  
+                break;  
+            }  
+        }  
+        if (doFilter) {  
+            // 执行过滤  
+            // 从session中获取登录者实体  
+            Object obj = request.getSession().getAttribute("userSession");  
+            if (null == obj) {  
+                // 如果session中不存在登录者实体，则弹出框提示重新登录  
+                // 设置request和response的字符集，防止乱码  
+            	LoginResponse resultResponse = ResponseUtil.createResponse(LoginResponse.class, ErrorCode.LOGIN_EXPIRED);
+            	ResponseBase64Util.write(response, JsonUtil.toJson(resultResponse));
+            } else {  
+                // 如果session中存在登录者实体，则继续  
+                filterChain.doFilter(request, response);  
+            }  
+        } else {  
+            // 如果不执行过滤，则继续  
+            filterChain.doFilter(request, response);  
+        }  
+    }  
+  
+}  

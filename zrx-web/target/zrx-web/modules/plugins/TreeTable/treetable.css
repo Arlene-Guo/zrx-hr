@@ -1,0 +1,5 @@
+.ttGrid td,.ttGrid th {display: table-cell;background-color: transparent;overflow:hidden;white-space: nowrap;border-radius:0px;font-size:13px;}
+.ttGrid tr {background-color: transparent;}
+.ttGrid .ttBDiv, .ttGrid .ttHDiv {background-color:#FAFAFA;padding-right:40px;border:1px solid #DDDDDD;border-left:none;}
+.ttGrid .ttBDiv table, .ttGrid .ttHDiv table { margin-bottom: 0px;border-top:none;border-bottom:none;border-radius:0px;width: auto; }
+.ttGrid .ttBDiv {overflow-y:auto;}

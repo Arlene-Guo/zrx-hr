@@ -1,0 +1,8 @@
+# 开发环境管理界面 http://tsp.sit.org/PLA/TSG/index.html
+#开发环境-AMQ地址//tcp://10.10.32.233:61616
+tsp.amq.address=tcp://bj-tspmq-master.sit.org:61616,nj-tspmq-master.sit.org:61616
+tsp.registry.address=bj-tspregister-master.sit.org:9989
+#开发环境-文本保存地址
+tsp.commonClient.dir=/opt/tomcat_hqb_hwed
+#启动模式 0 普通模式, 1 主线程阻塞直至收到服务的回应
+tsp.clientMode=1

@@ -1,0 +1,9 @@
+tsp.amq.address=tcp://bj-tspmq-master.cie.org:61616,tcp://bj-tspmq-slave-01.cie.org:61616,tcp://bj-tspmq-slave-02.cie.org:61616
+tsp.registry.address=bj-tspregister-master.cie.org:9989,bj-tspregister-slave.cie.org:9989
+
+#tsp.amq.address=tcp://bj-tspmq-master.sit.org:61616,nj-tspmq-master.sit.org:61616
+#tsp.registry.address=bj-tspregister-master.sit.org:9989
+#开发环境-文本保存地址
+tsp.commonClient.dir=/opt/tomcat_hqb_hwed
+#启动模式 0 普通模式, 1 主线程阻塞直至收到服务的回应
+tsp.clientMode=1

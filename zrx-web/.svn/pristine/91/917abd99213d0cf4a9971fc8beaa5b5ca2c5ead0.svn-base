@@ -1,0 +1,16 @@
+# 当前环境
+spring.profiles.active=sst
+
+# web工程url
+zrx.host.url=http://127.0.0.1:8080/zrx-web
+
+# 登录状态校验请求信息
+auth.check.url=http://passport.sit.org/authcheck
+#auth.check.url=http://public-api.nj.sso.sit.org/authcheck
+#poi.api.url=http://venus.org/api/poi/search
+poi.api.url=http://public-api.nj.venus.sst.org/api/poi/search
+auth.fab.url=http://public-api.nj.fab.org
+ror.search.url=http://public-api.nj.dcb.org/ror/category/ids/query
+#member login url
+#member.passport.url=http://passport.sit.tuniu.org
+member.passport.url=http://passport.sit.tuniu.org/?origin

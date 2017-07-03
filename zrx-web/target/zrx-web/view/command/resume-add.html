@@ -1,0 +1,122 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="Bookmark" href="/favicon.ico">
+		<link rel="Shortcut Icon" href="/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/H-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/H-ui.admin.css" />
+		<link rel="stylesheet" type="text/css" href="../../lib/Hui-iconfont/1.0.8/iconfont.css" />
+
+		<title>录入简历</title>
+		<style>
+			.addResume {
+				width: 100px;
+				height: 30px;
+				background: #0055cc;
+				display: inline-block;
+				position: relative;
+				top: 0;
+				left: 0;
+			}
+			
+			.addResume input {
+				position: absolute;
+				top: 0;
+				left: 0;
+				opacity: 0;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<article class="page-container">
+			<div class="c-red">
+				<label class="form-label col-xs-1 col-sm-1"></label>
+				为保证招聘的顺利进行，请录入近1-2天可以进行面试的人才的简历，近期不可安排面试的不要录入！</div>
+			<div class="form form-horizontal" id="form-admin-role-add">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>应聘者姓名：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" placeholder="" id="intervieweeName" name="intervieweeName" ver-required="true">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>应聘职位：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<select name="intervieweeDutiesName" id="intervieweeDutiesName" style="border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);" class="input-text">
+
+						</select>
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>手机号：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" placeholder="" id="intervieweePhone" name="intervieweePhone" ver-required="true" ver-pattern='cell'>
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>邮箱：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" placeholder="" id="intervieweeMail" name="intervieweeMail" ver-required="true" ver-pattern="email">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>毕业学校：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" placeholder="" id="schoolName" name="schoolName" ver-required="true">
+					</div>
+				</div>
+				<div class="row cl ranking" style="display:none;">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>排名：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>简历：</label>
+					<div class="formControls col-xs-8 col-sm-9 ">
+						<div class="addResume btn">
+							<input type="file" id="filename" name="filename">
+							<span>添加简历</span>
+						</div>
+						<span class="resume-box"></span>
+					</div>
+				</div>
+				<!--<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>状态设置：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<span> 
+					<input type="radio" name="delFlag" checked="checked" value="0"/>
+					有效(可尽快安排面试)
+				</span>
+						<span> 
+					<input type="radio" name="delFlag" value="1"/>
+					无效(暂时不安排面试)
+				</span>
+					</div>
+				</div>-->
+				<div class="row cl">
+					<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+						<button class="btn btn-primary radius" type="submit" id="admin-role-save"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+						<button class="btn btn-default radius" type="button" id="admin-role-quit">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript" src="../../lib/jquery/1.9.1/jquery.min.js"></script>
+		<script src="../../modules/importCss.js"></script>
+		<script src="../../modules/importJS.js"></script>
+		<script type="text/javascript" src="../../lib/layer/2.4/layer.js"></script>
+		<script type="text/javascript" src="../../static/js/H-ui.min.js"></script>
+		<script type="text/javascript" src="../../static/js/H-ui.admin.js"></script>
+		<script src="../../static/js/command/resume-add.js"></script>
+	</body>
+
+</html>

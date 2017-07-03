@@ -1,0 +1,253 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="stylesheet" type="text/css" href="static/css/H-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/H-ui.admin.css" />
+		<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="static/skin/default/skin.css" id="skin" />
+		<title>贝壳金控面试管理系统</title>
+	</head>
+	<body>
+		<header class="navbar-wrapper">
+			<div class="navbar navbar-fixed-top">
+				<div class="container-fluid cl">
+					<a class="logo navbar-logo f-l mr-10 hidden-xs" href="javascript:;">贝壳金控面试管理系统</a>
+					<a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+					<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
+						<ul class="cl">
+							<li class="dropDown">
+								<a href="#" class="user_name">admin </a>
+								<a href="#" class="user_quit">退出 </a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<aside class="Hui-aside">
+			<div class="menu_dropdown bk_2">
+				<dl id="menu-command" style="display:none;">
+					<dt><i class="Hui-iconfont">&#xe636;</i> 推荐人<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+					<dd>
+						<ul>
+							<li>
+								<a data-href="view/command/command.html" data-title="推荐人才" href="javascript:void(0)">推荐人才</a>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl id="menu-recruit" style="display:none">
+					<dt><i class="Hui-iconfont">&#xe637;</i> 招聘专员<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+					<dd>
+						<ul>
+							<li>
+								<a data-href="view/recruit/recruit-add-list.html#form=1" data-title="添加应聘者" href="javascript:void(0)">添加应聘者</a>
+							</li>
+							<!--<li>
+								<a data-href="view/recruit/recruit-screen.html" data-title="简历筛选" href="javascript:void(0)">简历筛选</a>
+							</li>-->
+							<li>
+								<a data-href="view/recruit/recruit-arrange.html" data-title="面试管理" href="javascript:void(0)">面试管理</a>
+							</li>
+							<li>
+								<a data-href="view/recruit/recruit-result.html" data-title="面试结果" href="javascript:void(0)">面试结果</a>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl id="menu-admin" style="display:none;">
+					<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+					<dd>
+						<ul>
+							<!--<li>
+								<a data-href="view/admin/admin-position.html" data-title="招聘职位管理" href="javascript:void(0)">招聘职位管理</a>
+							</li>-->
+							<li>
+								<a data-href="view/admin/admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a>
+							</li>
+							<!--<li>
+								<a data-href="view/admin/admin-evaluation.html" data-title="测评信息" href="javascript:void(0)">测评信息</a>
+							</li> -->
+							<li>
+								<a data-href="view/admin/admin-time.html" data-title="冻结面试时间" href="javascript:void(0)">冻结面试时间</a>
+							</li>
+							<li>
+								<a data-href="view/admin/admin-resume.html" data-title="简历管理" href="javascript:void(0)">简历管理</a>
+							</li>
+							<li>
+								<a data-href="view/admin/admin-result.html" data-title="面试结果汇总" href="javascript:void(0)">面试结果汇总</a>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl id="menu-superAdmin" style="display:none;">
+					<dt><i class="Hui-iconfont">&#xe62d;</i> 超级管理员<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+					<dd>
+						<ul>
+							<li>
+								<a data-href="view/superAdmin/superAdmin-permission.html" data-title="权限配置" href="javascript:void(0)">权限配置</a>
+							</li>
+							<li>
+								<a data-href="view/superAdmin/superAdmin-evaluation.html" data-title="测评信息" href="javascript:void(0)">测评信息</a>
+							</li>
+							<li>
+								<a data-href="view/superAdmin/superAdmin-position.html" data-title="招聘职位管理" href="javascript:void(0)">招聘职位管理</a>
+							</li>
+							<li>
+								<a data-href="view/superAdmin/superAdmin-time.html" data-title="冻结面试时间" href="javascript:void(0)">冻结面试时间</a>
+							</li>
+							<!--<li>
+								<a data-href="view/superAdmin/superAdmin-resume.html" data-title="简历管理" href="javascript:void(0)">简历管理</a>
+							</li>-->
+							<li>
+								<a data-href="view/superAdmin/superAdmin-result.html" data-title="面试结果汇总" href="javascript:void(0)">面试结果汇总</a>
+							</li>
+							<li>
+								<a data-href="view/superAdmin/superAdmin-roster.html" data-title="更新花名册" href="javascript:void(0)">更新花名册</a>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl id="menu-interview" style="display:none;">
+					<dt><i class="Hui-iconfont">&#xe623;</i> 面试官<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+					<dd>
+						<ul>
+							<li>
+								<a data-href="view/interviewer/interviewer-time.html" data-title="面试时间设置" href="javascript:void(0)">面试时间设置</a>
+							</li>
+							<li>
+								<a data-href="view/interviewer/interviewer-freezenTime.html" data-title="面试时间冻结" href="javascript:void(0)">面试时间冻结</a>
+							</li>
+							<li>
+								<a data-href="view/interviewer/interviewer-arrange.html" data-title="面试安排" href="javascript:void(0)">面试安排</a>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl id="menu-reception" style="display:none;">
+					<dt><i class="Hui-iconfont">&#xe72d;</i> 接待专员<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+					<dd>
+						<ul>
+							<li>
+								<a data-href="view/reception/reception.html" data-title="接待专员" href="javascript:void(0)">接待专员</a>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		</aside>
+		<section class="Hui-article-box">
+			<div id="Hui-tabNav" class="Hui-tabNav hidden-xs">
+				<div class="Hui-tabNav-wp">
+					<ul id="min_title_list" class="acrossTab cl">
+						<li class="active showType">
+							<!--<span title="推荐人才" data-href="command.html">推荐人才</span>
+							<em></em>-->
+						</li>
+					</ul>
+				</div>
+				<div class="Hui-tabNav-more btn-group">
+					<a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a>
+					<a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a>
+				</div>
+			</div>
+			<div id="iframe_box" class="Hui-article">
+				<div class="show_iframe">
+					<div style="display:none" class="loading"></div>
+					<iframe scrolling="yes" frameborder="0" src="" class="iframe_url"></iframe>
+				</div>
+			</div>
+		</section>
+		<div class="contextMenu" id="Huiadminmenu">
+			<ul>
+				<li id="closethis">关闭当前 </li>
+				<li id="closeall">关闭全部 </li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+		<script type="text/javascript" src="static/js/H-ui.js"></script>
+		<script type="text/javascript" src="static/js/H-ui.admin.js"></script>
+		<script src="modules/util/JSON.js"></script>
+		<script src="modules/util/Base64.js"></script>
+		<script src="modules/plugins/Notice.js"></script>
+		<script src="modules/plugins/Noty.js"></script>
+		<script src="modules/tn/TN.js"></script>
+		<script>
+			//判断id是否存在
+			if(!sessionStorage.data){
+				window.location.href='login.html';
+			}
+			//显示左侧栏
+			var data=tn.json.encode(tn.Base64.decode(sessionStorage.data));
+			console.log(data);
+			var role=data.userRoleId;
+			//显示用户名密码
+			$('.user_name').html(data.userName);
+			//退出
+			var url='';
+			if(location.href.indexOf('210.51.167.65')!=-1){
+				url='http://210.51.167.65:8080/zrx-web/';
+			}else{
+			//	url='http://10.56.14.183/zrx-web/';
+					url='http://10.56.12.166:8080/zrx-web/';
+			//url='http://172.29.32.21:8080/zrx-web/';
+			}
+			$('.user_quit').click(function(){
+				Ajax.request({
+					url: url+'login/logout',
+					type: "GET",
+					data: {},
+					listener: {
+						success: function(json) {
+							if(json.success) {
+								delete sessionStorage.data;
+								window.location.href='login.html';
+							}
+						}
+					}
+				});
+			});
+			for(var i=0;i<role.length;i++){
+				console.log(role);
+				switch(role[i]){
+					case 1:
+						$('#menu-admin').show();
+						$('.showType').html('<span title="管理员" data-href="admin-permission.html">管理员</span><em></em>');
+						$('.iframe_url').attr('src','view/admin/admin-permission.html');
+						 break;
+					case 6:
+					  $('#menu-superAdmin').show();
+					  $('.showType').html('<span title="超级管理员" data-href="superAdmin-permission.html">超级管理员</span><em></em>');
+					  $('.iframe_url').attr('src','view/superAdmin/superAdmin-permission.html');
+						 break;
+					case 3:
+						$('#menu-command').show();
+						$('.showType').html('<span title="推荐人" data-href="command.html">推荐人</span><em></em>');
+						$('.iframe_url').attr('src','view/command/command.html');
+						 break;
+					case 4:
+						$('#menu-interview').show();
+						$('.showType').html('<span title="面试官" data-href="interviewer-time.html">面试官</span><em></em>');
+						$('.iframe_url').attr('src','view/interviewer/interviewer-time.html');
+						 break;
+					case 5:
+						$('#menu-reception').show();
+						$('.showType').html('<span title="接待专员" data-href="reception.html">接待专员</span><em></em>');
+						$('.iframe_url').attr('src','view/reception/reception.html');
+						 break;
+					case 2:
+						$('#menu-recruit').show();
+						$('.showType').html('<span title="招聘专员" data-href="recruit-add-list.html">招聘专员</span><em></em>');
+						$('.iframe_url').attr('src','view/recruit/recruit-add-list.html');
+						 break;
+				}
+			}
+		</script>
+	</body>
+</html>

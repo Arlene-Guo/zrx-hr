@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	
+	<!-- 开发控制台打印日志 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{32} - %msg%n</Pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FOS_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>/opt/zrx/logs/tomcat/app/tomcat_hqb_hzrx/logs/zrx.log</File>
+		<Pattern> %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{32} - %msg%n  </Pattern>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				/opt/zrx/logs/tomcat/app/tomcat_hqb_hzrx/logs/zrx.%d{yyyy-MM-dd}-%i.log
+			</FileNamePattern>
+			<maxHistory>30</maxHistory>
+			<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>200MB</maxFileSize>
+			</TimeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+ 		<encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36}:%L - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+		<layout>
+			<Pattern>
+				%-26(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{32} - %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+	
+	<logger name="com.tuniu.operation.platform.tsg" level="WARN" />
+	
+<!-- 	<root level="INFO"> -->
+<!-- 		<appender-ref ref="FOS_LOG" /> -->
+<!-- 	</root> -->
+	
+	<root level="DEBUG">
+		<appender-ref ref="FOS_LOG" />
+		<appender-ref ref="STDOUT"/>
+	</root>
+	
+</configuration>

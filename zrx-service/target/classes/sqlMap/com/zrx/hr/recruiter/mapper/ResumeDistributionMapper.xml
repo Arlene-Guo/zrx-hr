@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.recruiter.mapper.ResumeDistributionMapper">
+
+	<sql id="resumeDistributionTable">
+		resume_distribution
+	</sql>
+	
+	<sql id="resumeDistributionFields">
+		`id`, `resume_id` as resumeId, `resume_commissioner_id` as resumeCommissionerId,
+		`resume_commissioner_name as resumeCommissionerName`, `state`,  `remarks`, 
+		`interview_order_id` as interviewOrderId, `evaluation_mail_id` as evaluationMailId, 
+		`create_time` as createTime, `del_flag` as delFlag
+	</sql>
+	
+	<resultMap id="resumeDistribution" type="com.zrx.hr.recruiter.domain.vo.ResumeDistribution"></resultMap>
+	
+	<resultMap id="searchResumeDistributionListDto" type="com.zrx.hr.recruiter.domain.dto.SearchResumeDistributionListDto"></resultMap>
+	
+	<resultMap id="resumeManagerDto" type="com.zrx.hr.recruiter.domain.dto.ResumeManagerDto"></resultMap>
+	
+	<insert id="insertResumeDistribution" parameterType="com.zrx.hr.recruiter.domain.vo.ResumeDistribution">
+	
+		<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	      SELECT LAST_INSERT_ID()
+	    </selectKey>
+		
+		INSERT INTO <include refid="resumeDistributionTable"></include>
+		(
+			`resume_id`, `resume_commissioner_id`, `resume_commissioner_name`, `remarks`, 
+			`interview_order_id`, `evaluation_mail_id`, `state`, `create_time`
+		)
+		VALUES (
+			#{resumeId}, 
+			#{resumeCommissionerId}, 
+			#{resumeCommissionerName}, 
+			#{remarks},
+			#{interviewOrderId},
+			#{evaluationMailId},
+			#{state},
+			NOW()			
+		)
+		
+	</insert>
+	
+<!-- 	<insert id="insertSelective" parameterType="com.tuniu.ngsp.nws.drive.dto.OccupyResourceStatusDto" > -->
+<!--         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" > -->
+<!--             SELECT LAST_INSERT_ID() -->
+<!--         </selectKey> -->
+<!--         insert into drive_occupy_status -->
+<!--         <trim prefix="(" suffix=")" suffixOverrides="," > -->
+<!--             <if test="orderId != null" > -->
+<!--                 order_id, -->
+<!--             </if> -->
+<!--             <if test="requirementId != null" > -->
+<!--                 requirement_id, -->
+<!--             </if> -->
+<!--             <if test="resourceId != null" > -->
+<!--                 resource_id, -->
+<!--             </if> -->
+<!--             <if test="occupyStatus != null" > -->
+<!--                 occupy_status, -->
+<!--             </if> -->
+<!--             <if test="occupyResult != null" > -->
+<!--                 occupy_result, -->
+<!--             </if> -->
+<!-- 			<if test="addUid != null" > -->
+<!--                 add_uid, -->
+<!--             </if> -->
+<!--             <if test="addTime != null" > -->
+<!--                 add_time, -->
+<!--             </if> -->
+<!-- 			<if test="updateUid != null" > -->
+<!--                 update_uid, -->
+<!--             </if> -->
+<!--             <if test="updateTime != null" > -->
+<!--                 update_time, -->
+<!--             </if> -->
+<!--             <if test="delFlag != null" > -->
+<!--                 del_flag, -->
+<!--             </if> -->
+<!--         </trim> -->
+<!--         <trim prefix="values (" suffix=")" suffixOverrides="," > -->
+<!--             <if test="orderId != null" > -->
+<!--                 #{orderId,jdbcType=INTEGER}, -->
+<!--             </if> -->
+<!--             <if test="requirementId != null" > -->
+<!--                 #{requirementId,jdbcType=INTEGER}, -->
+<!--             </if> -->
+<!--             <if test="resourceId != null" > -->
+<!--                 #{resourceId,jdbcType=INTEGER}, -->
+<!--             </if> -->
+<!--             <if test="occupyStatus != null" > -->
+<!--                 #{occupyStatus,jdbcType=INTEGER}, -->
+<!--             </if> -->
+<!--             <if test="occupyResult != null" > -->
+<!--                 #{occupyResult,jdbcType=VARCHAR}, -->
+<!--             </if> -->
+<!--             <if test="addUid != null" > -->
+<!-- 		        #{addUid,jdbcType=INTEGER}, -->
+<!-- 		    </if> -->
+<!--             <if test="addTime != null" > -->
+<!-- 		        #{addTime,jdbcType=TIMESTAMP}, -->
+<!-- 		    </if> -->
+<!--             <if test="updateUid != null" > -->
+<!-- 		        #{updateUid,jdbcType=INTEGER}, -->
+<!-- 		    </if> -->
+<!--             <if test="updateTime != null" > -->
+<!-- 		        #{updateTime,jdbcType=TIMESTAMP}, -->
+<!-- 		    </if> -->
+<!--             <if test="delFlag != null" > -->
+<!--                 #{delFlag,jdbcType=INTEGER}, -->
+<!--             </if> -->
+<!--         </trim> -->
+<!--     </insert> -->
+	
+	<update id="updateResumeDistributionByPrimaryKeySelective" parameterType="com.zrx.hr.recruiter.domain.vo.ResumeDistribution" >
+	    UPDATE <include refid="resumeDistributionTable"></include>
+	    <set>
+	    	  `op_time` = NOW(),
+		      <if test="resumeId != null" >
+		        resume_id = #{resumeId},
+		      </if>
+		      <if test="resumeCommissionerId != null" >
+		        resume_commissioner_id = #{resumeCommissionerId},
+		      </if>
+		      <if test="resumeCommissionerName != null" >
+		        resume_commissioner_name = #{resumeCommissionerName},
+		      </if>
+		      <if test="state != null" >
+		        state = #{state},
+		      </if>
+		      <if test="remarks != null" >
+		        remarks = #{remarks},
+		      </if>
+		      <if test="interviewOrderId != null" >
+		        interview_order_id = #{interviewOrderId},
+		      </if>
+		      <if test="evaluationMailId != null" >
+		        evaluation_mail_id = #{evaluationMailId},
+		      </if>
+		      <if test="delFlag != null" >
+		        del_flag = #{delFlag},
+		      </if>
+	    </set>
+	    WHERE id = #{id}
+  	</update>
+  	
+  	<insert id="insertBatchResumeDistribution">
+        INSERT IGNORE INTO <include refid="resumeDistributionTable"></include> 
+        (
+			`resume_id`, `resume_commissioner_id`, `remarks`, 
+			`interview_order_id`, `evaluation_mail_id`, `create_time`
+		)
+		VALUES 
+		<foreach collection="records" separator="," item="record">
+			(
+			#{record.resumeId}, 
+			#{record.resumeCommissionerId}, 
+			#{record.remarks},
+			#{record.interviewOrderId},
+			#{record.evaluationMailId},		
+			NOW()
+			)			
+		</foreach>
+    </insert>
+    
+    <select id="searchResumeDistributionList" resultMap="searchResumeDistributionListDto">
+    	SELECT
+		  D.id,
+		  D.resume_id as resumeId,
+		  D.resume_commissioner_id as resumeCommissionerId,
+		  D.remarks,
+		  D.interview_order_id as interviewOrderId,
+		  D.evaluation_mail_id as evaluationMailId,
+		  D.filterState,
+		  D.interviewee_name as intervieweeName,
+		  D.interviewee_phone as intervieweePhone,
+		  D.interviewee_duties_id as intervieweeDutiesId,
+		  D.interviewee_duties_name as intervieweeDutiesName,
+		  D.interviewee_mail as intervieweeMail,
+		  D.school_id as schoolId,
+		  D.school_name as schoolName,
+		  D.resume_filename as resumeFilename,
+		  D.resume_path as resumePath,
+		  D.id_number as idNumber,
+		  D.create_time as createTime,
+		  D.del_flag as delFlag,
+		  C.state,
+		  E.ranking
+		FROM (SELECT
+		        A.id,
+		        A.resume_id,
+		        A.resume_commissioner_id,
+		        A.remarks,
+		        A.interview_order_id,
+		        A.evaluation_mail_id,
+		        A.state                    AS filterState,
+		        B.interviewee_name,
+		        B.interviewee_phone,
+		        B.interviewee_duties_id,
+		        B.interviewee_duties_name,
+		        B.interviewee_mail,
+		        B.school_id,
+		        B.school_name,
+		        B.resume_filename,
+		        B.resume_path,
+		        B.id_number,
+		        B.create_time,
+		        B.recommended_source,
+		        B.recommended_name,
+		        A.del_flag
+		      FROM `resume_distribution` A
+		        INNER JOIN `resume` B
+		          ON (A.resume_id = B.id AND A.del_flag = 0 AND B.del_flag = 0)
+		      ORDER BY A.create_time DESC) D
+		  LEFT JOIN interviewer_order C
+		    ON (D.id = C.resume_distribution_id
+		        AND D.del_flag = C.del_flag)
+		  LEFT JOIN school E
+		    ON (E.school_name = D.school_name)
+		WHERE 1 = 1
+		    <if test="resumeDistribution.id != null">AND D.`id` = #{resumeDistribution.id}</if>
+			<if test="resumeDistribution.resumeCommissionerId != null">AND D.`resume_commissioner_id` = #{resumeDistribution.resumeCommissionerId}</if>
+			<if test="resumeDistribution.intervieweeName != null and  resumeDistribution.intervieweeName != ''">AND D.`interviewee_name` = #{resumeDistribution.intervieweeName}</if>
+		    <if test="resumeDistribution.intervieweeDutiesName != null">AND D.`interviewee_duties_name` = #{resumeDistribution.intervieweeDutiesName}</if>
+		    <if test="resumeDistribution.recommendedSource != null">AND D.`recommended_source` = #{resumeDistribution.recommendedSource}</if>
+		    <if test="resumeDistribution.createTime != null">AND D.`create_time` = #{resumeDistribution.createTime}</if>
+		    <if test="resumeDistribution.recommendedName != null and resumeDistribution.recommendedName != ''">AND D.`recommended_name` = #{resumeDistribution.recommendedName}</if>
+		    <if test="resumeDistribution.state != null">AND C.`state` = #{resumeDistribution.state}</if>
+		    <if test="resumeDistribution.filterState != null">AND A.`state` = #{resumeDistribution.filterState}</if>
+		ORDER BY D.id DESC
+		<if test="resumeDistribution.isPage == null">
+				LIMIT #{resumeDistribution.start}, #{resumeDistribution.limit}
+		</if>
+    </select>
+    	
+    <select id="searchResumeManagerList" resultMap="resumeManagerDto">
+    	SELECT
+		  B.id                       as resumeDistributionId,
+		  A.id                       as resumeId,
+		  A.interviewee_name         as intervieweeName,
+		  A.interviewee_phone as intervieweePhone,
+		  A.interviewee_duties_id as intervieweeDutiesId,
+		  A.interviewee_duties_name as intervieweeDutiesName,
+		  A.interviewee_mail as intervieweeMail,
+		  A.school_id as schoolId,
+		  A.school_name as schoolName,
+		  A.resume_filename as resumeFilename,
+		  A.resume_path as resumePath,
+		  A.id_number as idNumber,
+		  A.create_time as resumeCreateTime,
+		  A.recommended_source as recommendedSource,
+		  A.recommended_id as recommendedId,
+		  A.recommended_name as recommendedName,
+		  A.recommended_job_number as jobNumber,
+		  B.create_time as distributionTime,
+		  B.resume_commissioner_id as resumeCommissionerId,
+		  B.resume_commissioner_name as resumeCommissionerName
+		FROM `resume` A
+		  LEFT JOIN resume_distribution B
+		    ON (A.id = B.resume_id AND A.del_flag = 0 AND B.del_flag = 0)		  
+		WHERE 1=1
+		    <if test="resumeManager.resumeId != null">AND A.`id` = #{resumeManager.resumeId}</if>
+			<if test="resumeManager.intervieweeName != null">AND A.`interviewee_name` = #{resumeManager.intervieweeName}</if>
+			<if test="resumeManager.intervieweeDutiesName != null">AND A.`interviewee_duties_name` = #{resumeManager.intervieweeDutiesName}</if>
+		    <if test="resumeManager.recommendedSource != null">AND A.recommended_source = #{resumeManager.recommendedSource}</if>
+		    <if test="resumeManager.resumeCommissionerName != null">AND B.resume_commissioner_name = #{resumeManager.resumeCommissionerName}</if>
+		ORDER BY A.create_time DESC
+		<if test="resumeManager.isPage == null">
+				LIMIT #{resumeManager.start}, #{resumeManager.limit}
+		</if>
+    </select>
+           
+</mapper>

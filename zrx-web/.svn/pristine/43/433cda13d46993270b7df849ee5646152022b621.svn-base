@@ -1,0 +1,217 @@
+.tngpContainer {
+  font-size: 13px;
+}
+.tngpContainer label{
+  font-size: 13px;
+}
+.tngpContainer .tngpHeader th {
+  padding: 6px 3px;
+}
+.tngpContainer .tngpHeader th div{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+}
+.tngpContainer .table td {
+  padding: 5px 0 3px;
+  vertical-align: middle;
+}
+.tngpContainer .table td div {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  padding: 0 3px;
+}
+.tngpTools {
+  position: relative;
+}
+.tngpTools .colTools {
+  position: absolute;
+  top: 33px;
+  right: 1px;
+  z-index: 10;
+  margin-right: 1px;
+}
+.tngpTools .colList {
+  display: none;
+  position: absolute;
+  margin-top: -31px;
+  right: 23px;
+  background-color: #FFFFFF;
+  padding: 5px 20px 5px 5px;
+  border: 1px solid rgba(82, 168, 236, 0.6);
+  margin-right: 6px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  z-index: 10;
+  max-height: 177px;
+  overflow-y: auto;
+}
+.tngpTools .colTools input {
+  margin: 0 5px 0 0;
+}
+.tngpHeader, .tngpHeader table{
+  background-color: #ECECEC;
+  color: #333333;
+}
+.tngpHeader table th, .tngpBody table td{
+  border-right: 1px solid #f1f1f1;
+}
+.tngpHeader table a {
+  color: #333333;
+}
+.tngpHeader th {
+  text-align: left;
+  padding: 6px 3px;
+}
+.tngpBody {
+  margin-bottom: 1px;
+}
+.tngpBody table {
+  margin-right: 10px;
+}
+.tngpBody table td a{
+  margin-left: 0;
+}
+.tngpBody input,.tngpBody select,.tngpBody textarea {
+  margin: 0;
+}
+.tngpTools a {
+  background-color: #44A7EE;
+  display: block;
+  font-size: 13px;
+  opacity: 0.8;
+  padding: 7px 3px 3px 5px;
+  margin-bottom: 2px;
+}
+.tngpTools a i{
+  color: #FFFFFF;
+  padding-right: 2px
+}
+.tngpTools .colToggle a i{
+  padding-right: 0px
+}
+.tngpBodyContainer {
+  position: relative;
+  text-overflow: ellipsis;
+  overflow-x: scroll;
+  white-space:nowrap;
+  min-height: 100px;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px 3px 0 0;
+  border-bottom: none;
+}
+.tngpContainer .tngpFooter select{
+  width: 110px;
+}
+.tngpFooter {
+  min-height: 30px;
+  max-height: 30px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #CCCCCC;
+  padding: 5px 10px;
+  border-radius: 0 0 3px 3px;
+}
+.tngpTools .col {
+  display: none;
+}
+.table-hover tbody tr:hover td,.table-hover tbody tr:hover th {
+  background-color: #fefbda;
+}
+.tngpDrag div {
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+  width:1px;
+  border-right: 1px solid #E2E2E2;
+  cursor: col-resize;
+}
+.tngpHeader input[type="checkbox"],.tngpBody td input[type="checkbox"]{
+  margin: 0px;
+}
+.tngpHeader div[col="checkbox"],.tngpBody div[col="checkbox"]{
+  text-align: center;
+}
+.tngpSorted {
+  cursor: pointer;
+}
+.tngpSortBtn {
+  position: absolute;
+  margin-top: -7px;
+  margin-left: 2px;
+  cursor: pointer;
+}
+.tngpSasc {
+  display: block;
+  height: 9px;
+}
+.tngpSdesc {
+  display: block;
+}
+.tngpMessage {
+  position: absolute;
+  height: 30px;
+  padding: 5px 0 5px 5px;
+  line-height: 30px;
+  border: none;
+  border-top: 1px solid #CBDFE9;
+  border-bottom: 1px solid #CBDFE9;
+  width: auto;
+  z-index: 9;
+  display: none;
+  opacity: 0.9;
+}
+.tngpMessage input{
+  margin: 0 5px 0 0;
+}
+.tngpMessage .closeMsg {
+  margin-left: 10px;
+}
+.tngpMessage .closeMsg i{
+  margin-right: 5px;
+}
+.tngpContainer .table td.treeHead {
+  background-color: #E2E2E2;
+}
+.tngpContainer .table td.treeHead div{
+  position: relative;
+  height: 20px;
+}
+.tngpContainer .table td.treeHead div div{
+  position: absolute;
+  z-index: 2;
+  width: auto;
+}
+.tngpRowMove tr {
+  cursor: move;
+}
+.tngpContainer a {
+  text-decoration: none;
+}
+
+.tngpContainer label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.tngpTools .colTools .colToggle {
+  display: block;
+}
+.tngpTools .colTools a:hover {
+  background-color: #0055CC
+}
+.tngpBtns {
+    height: 40px;
+    line-height: 40px;
+    max-height: 40px;
+    min-height: 40px;
+}
+.tngpBtns a {
+  margin-right: 5px
+}
+a:focus,.btn:focus {
+  outline: none;
+}
+

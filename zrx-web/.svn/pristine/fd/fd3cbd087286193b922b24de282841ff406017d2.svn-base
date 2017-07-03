@@ -1,0 +1,51 @@
+
+
+/**Form*/
+
+
+/* global */
+.s-required { color:#F00; font-weight:bold; padding:0 5px;}
+
+
+/* Checkbox */
+.s-cbk { margin:2px 10px;white-space:nowrap;}
+.s-cbk input{ margin-right:5px;}
+.s-cbk label{ position:relative;}
+
+
+/* Layer */
+.s-layer-parent { position:relative;}
+.s-layer {position:absolute; z-index:500;width:400px;background:#fff; box-shadow:0 0 10px rgba(0,0,0,.5); border:1px solid #999; cursor:default; outline:0; display:none}
+.s-layer .s-layer-body { overflow:auto;}
+.s-layer .s-layer-header { color:#999;}
+.s-layer .s-layer-footer{ padding: 6px 15px; text-align:center; border-top:1px solid #dfdfdf; margin-top:10px; background:#efefef}
+
+/* Tree CheckboxGroup */
+.s-tree-ckb { padding:0 15px}
+.s-tree-cbk-head { padding:5px 0;  border-bottom:1px solid #adadad}
+.s-tree-cbk-group { padding:10px 0 0 0;clear:both}
+
+/* CheckboxGroup */
+.s-cbk-group .s-cbk { float:left;}
+
+
+/* List */
+.s-list {}
+.s-list .s-list-item { padding:2px 8px;}
+.s-list .s-list-item .s-list-item-num{ width:20px; display:block; float:left; color:#bbb; text-align:center}
+.s-list .s-list-item-selected,.s-list .s-list-item:hover { background:#FC0}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

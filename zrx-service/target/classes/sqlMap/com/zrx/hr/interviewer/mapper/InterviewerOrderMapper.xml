@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.interviewer.mapper.InterviewerOrderMapper">
+
+	<sql id="interviewerOrderTable">
+		interviewer_order
+	</sql>
+	
+	<sql id="interviewerOrderFields">
+		`id`, `resume_id`, `interviewee_name`, `interviewee_phone`, `interviewee_duties_id`, 
+		`interviewee_duties_name`, `interviewee_mail`, `school_id`, `school_name`, `id_number`,
+		`resume_filename`, `resume_path`, `resume_commissioner_id`, `resume_commissioner_name`, 
+		`duties_id`, `resume_distribution_id`, `evaluation_result`, `state`, `create_time`, `del_flag`
+	</sql>
+	
+	<sql id="searchInterviewerOrderListCondition">
+		<if test="interviewerOrder.id != null">AND `id` = #{interviewerOrder.id}</if>
+	</sql>
+	
+	<sql id="interviewerOrderlimitCondition">
+		<if test="interviewerOrder.isPage == null">
+			LIMIT #{interviewerOrder.start}, #{interviewerOrder.limit}
+		</if>
+	</sql>
+
+	<resultMap id="interviewerOrder" type="com.zrx.hr.interviewer.domain.vo.InterviewerOrder"></resultMap>
+	
+	<resultMap id="interviewerOrderArrangeCombineDto" type="com.zrx.hr.interviewer.domain.dto.InterviewerOrderArrangeCombineDto"></resultMap>
+	
+	<resultMap id="findArrangedInterviewListDto" type="com.zrx.hr.interviewer.domain.dto.FindArrangedInterviewListDto"></resultMap>
+	
+	<insert id="insertInterviewerOrder" parameterType="com.zrx.hr.interviewer.domain.vo.InterviewerOrder">
+			
+		<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	      SELECT LAST_INSERT_ID()
+	    </selectKey>
+		
+		INSERT INTO <include refid="interviewerOrderTable"></include>
+		
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+				<if test="resumeId != null">resume_id,</if>
+				<if test="intervieweeName != null">interviewee_name,</if>
+				<if test="intervieweePhone != null">interviewee_phone,</if>
+				<if test="intervieweeDutiesId != null">interviewee_duties_id,</if>
+				<if test="intervieweeDutiesName != null">interviewee_duties_name,</if>
+				<if test="intervieweeMail != null">interviewee_mail,</if>
+				<if test="schoolId != null">school_id,</if>
+				<if test="schoolName != null">school_name,</if>
+				<if test="idNumber != null">id_number,</if>
+				<if test="resumeFilename != null">resume_filename,</if>
+				<if test="resumePath != null">resume_path,</if>
+				<if test="resumeCommissionerId != null">resume_commissioner_id,</if>
+				<if test="resumeCommissionerName != null">resume_commissioner_name,</if>
+				<if test="dutiesId != null">duties_id,</if>
+				<if test="resumeDistributionId != null">resume_distribution_id,</if>
+				<if test="evaluationResult != null">evaluation_result,</if>
+				<if test="state != null">state,</if>
+				create_time
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides="," >
+				<if test="resumeId != null">#{resumeId},</if>
+				<if test="intervieweeName != null">#{intervieweeName},</if>
+				<if test="intervieweePhone != null">#{intervieweePhone},</if>
+				<if test="intervieweeDutiesId != null">#{intervieweeDutiesId},</if>
+				<if test="intervieweeDutiesName != null">#{intervieweeDutiesName},</if>
+				<if test="intervieweeMail != null">#{intervieweeMail},</if>
+				<if test="schoolId != null">#{schoolId},</if>
+				<if test="schoolName != null">#{schoolName},</if>
+				<if test="idNumber != null">#{idNumber},</if>
+				<if test="resumeFilename != null">#{resumeFilename},</if>
+				<if test="resumePath != null">#{resumePath},</if>
+				<if test="resumeCommissionerId != null">#{resumeCommissionerId},</if>
+				<if test="resumeCommissionerName != null">#{resumeCommissionerName},</if>
+				<if test="dutiesId != null">#{dutiesId},</if>
+				<if test="resumeDistributionId != null">#{resumeDistributionId},</if>
+				<if test="evaluationResult != null">#{evaluationResult},</if>
+				<if test="state != null">#{state},</if>
+				NOW()
+			</trim>
+		<!-- (
+				`resume_id`, `interviewee_name`, `interviewee_phone`, `interviewee_duties_id`, 
+				`interviewee_duties_name`, `interviewee_mail`, `school_id`, `school_name`, `id_number`,
+				`resume_filename`, `resume_path`, `resume_commissioner_id`, `resume_commissioner_name`, 
+				`duties_id`, `resume_distribution_id`, `evaluation_result`, `state`, `create_time`
+		)
+		VALUES (
+			#{resumeId}, 
+			#{intervieweeName}, 
+			#{intervieweePhone}, 
+			#{intervieweeDutiesId}, 
+			#{intervieweeDutiesName}, 
+			#{intervieweeMail},
+			#{schoolId},
+			#{schoolName},
+			#{idNumber},
+			#{resumeFilename},
+			#{resumePath},
+			#{resumeCommissionerId},
+			#{resumeCommissionerName},
+			#{dutiesId},
+			#{resumeDistributionId},
+			#{evaluationResult},
+			#{state},
+			NOW()		
+		) -->
+	</insert>
+	
+	<update id="updateInterviewerOrderByPrimaryKeySelective" parameterType="com.zrx.hr.interviewer.domain.vo.InterviewerOrder" >
+	    UPDATE <include refid="interviewerOrderTable"></include>
+	    <set>
+	    	  `op_time` = NOW(),
+		      <if test="evaluationResult != null" >
+		        evaluation_result = #{evaluationResult},
+		      </if>
+		      <if test="state != null" >
+		        state = #{state},
+		      </if>
+	    </set>
+	    WHERE id = #{id}
+  	</update>
+
+    <select id="findInterviewerOrderList" resultMap="interviewerOrder">
+        SELECT
+           <include refid="interviewerOrderFields"></include>
+        FROM  <include refid="interviewerOrderTable"></include>
+        where 1=1 AND del_flag = 0
+        	<include refid="searchInterviewerOrderListCondition"></include>        		
+        ORDER BY `create_time` desc
+        <include refid="interviewerOrderlimitCondition"></include>        
+    </select>
+    
+    <!-- 对面试单和面试安排表做联合查询  面试汇总表-->
+    <select id="findInterviewerOrderArrangeCombine" resultMap="interviewerOrderArrangeCombineDto">
+        SELECT
+		  A.id,
+		  A.resume_id as resumeId,
+		  B.id as interviewArrangementsId,
+		  A.interviewee_name as intervieweeName,
+		  A.interviewee_phone as intervieweePhone,
+		  A.interviewee_duties_id as intervieweeDutiesId,
+		  A.interviewee_duties_name as intervieweeDutiesName,
+		  A.interviewee_mail as intervieweeMail,
+		  A.resume_commissioner_id as resumeCommissionerId,
+		  U.user_name as resumeCommissionerName,
+		  A.resume_distribution_id as resumeDistributionId,
+		  B.interviewer_id as interviewerId,
+		  B.interviewer_name as interviewerName,
+		  B.interviewer_time as interviewerTime,
+		  B.type,
+		  A.evaluation_result as evaluationResult,
+		  A.state as offerState,
+		  B.remarks,
+		  R.id_number as userName
+		FROM interviewer_order A
+		  INNER JOIN interview_arrangements B
+		    ON (A.id = B.order_id AND A.del_flag = 0 AND B.del_flag=0)	
+		  LEFT JOIN users U
+			ON(A.resume_commissioner_id = U.id)
+		  LEFT JOIN resume R
+			ON(A.resume_id = R.id)		    
+		WHERE 
+		 	 1=1 
+		 	<if test="searchInterviewerOrderList.interviewArrangementsId != null">AND B.id = #{searchInterviewerOrderList.interviewArrangementsId}</if>
+		 	<if test="searchInterviewerOrderList.intervieweeName != null">AND A.interviewee_name = #{searchInterviewerOrderList.intervieweeName}</if>
+			<if test="searchInterviewerOrderList.intervieweeDutiesName != null">AND A.interviewee_duties_name = #{searchInterviewerOrderList.intervieweeDutiesName}</if>
+			<if test="searchInterviewerOrderList.resumeCommissionerName != null">AND U.user_name = #{searchInterviewerOrderList.resumeCommissionerName}</if>
+			<if test="searchInterviewerOrderList.initInterviewerTime != null">AND B.interviewer_time like CONCAT(#{searchInterviewerOrderList.initInterviewerTime},'%')</if>
+			<if test="searchInterviewerOrderList.interviewerName != null">AND B.interviewer_name = #{searchInterviewerOrderList.interviewerName}</if>
+			<if test="searchInterviewerOrderList.evaluationResult != null">AND A.evaluation_result = #{searchInterviewerOrderList.evaluationResult}</if>
+			<if test="searchInterviewerOrderList.offerState != null and searchInterviewerOrderList.offerState == 11">AND A.state in (11)</if>
+			<if test="searchInterviewerOrderList.offerState != null and searchInterviewerOrderList.offerState == 9">AND A.state in (9)</if>
+			<if test="searchInterviewerOrderList.initPassed != null and searchInterviewerOrderList.initPassed == 5">AND A.state in (5,7,8,9,11)</if>
+			<if test="searchInterviewerOrderList.initPassed != null and searchInterviewerOrderList.initPassed == 6">AND A.state in (6)</if>
+			<if test="searchInterviewerOrderList.rePassed != null and searchInterviewerOrderList.rePassed == 9">AND A.state in (9,11)</if>
+			<if test="searchInterviewerOrderList.rePassed != null and searchInterviewerOrderList.rePassed == 10">AND A.state in (10)</if>
+			<if test="searchInterviewerOrderList.resumeCommissionerId != null">AND A.resume_commissioner_id = #{searchInterviewerOrderList.resumeCommissionerId}</if>
+		ORDER BY A.create_time DESC
+			 <if test="searchInterviewerOrderList.isPage == null">
+				LIMIT #{searchInterviewerOrderList.start}, #{searchInterviewerOrderList.limit}
+			</if>
+    </select>
+    
+    <!-- 招聘专员已经安排的面试列表 -->
+    <select id="findArrangedInterviewByCommissionerList" resultMap="findArrangedInterviewListDto">
+        SELECT
+		  A.resume_distribution_id as resumeDistributionId,
+		  A.id AS interviewerOrderId,
+		  B.id AS interviewArrangementsId,
+		  A.resume_id as resumeId,
+		  A.interviewee_name as intervieweeName,
+		  A.interviewee_phone as intervieweePhone,
+		  A.interviewee_duties_id as intervieweeDutiesId,
+		  A.interviewee_duties_name as intervieweeDutiesName,
+		  A.interviewee_mail as intervieweeMail,
+		  A.school_id as schoolId,
+		  A.school_name as schoolName,
+		  A.resume_filename as resumeFilename,
+		  A.resume_path as resumePath,
+		  R.id_number as idNumber,
+		  A.resume_commissioner_id as resumeCommissionerId,
+		  A.resume_commissioner_name as resumeCommissionerName,
+		  A.resume_distribution_id as resumeDistributionId,
+		  B.interviewer_id as interviewerId,
+		  B.interviewer_name as interviewerName,
+		  B.interviewer_time as interviewerTime,
+		  B.type,
+		  B.interviewer_type as interviewerType,
+		  A.evaluation_result as evaluationResult,
+		  A.state,
+		  B.remarks
+		FROM resume_distribution C 
+			INNER JOIN interviewer_order A ON (C.id = A.resume_distribution_id AND A.del_flag = 0 AND C.del_flag=0)
+		  INNER JOIN interview_arrangements B
+		    ON (A.id = B.order_id AND A.del_flag = 0 AND B.del_flag=0)
+		  LEFT JOIN resume R
+		  	ON (A.resume_id = R.id)
+		    WHERE  1=1 
+		    <if test="searchArrangedInterviewList.interviewArrangementsId != null">AND B.id = #{searchArrangedInterviewList.interviewArrangementsId}</if>
+		    <if test="searchArrangedInterviewList.interviewerOrderId != null">AND A.id = #{searchArrangedInterviewList.interviewerOrderId}</if>
+		    <if test="searchArrangedInterviewList.resumeCommissionerId != null">AND C.resume_commissioner_id = #{searchArrangedInterviewList.resumeCommissionerId}</if>
+		    <if test="searchArrangedInterviewList.intervieweeName != null">AND A.interviewee_name = #{searchArrangedInterviewList.intervieweeName}</if>
+		    <if test="searchArrangedInterviewList.intervieweeDutiesName != null">AND A.interviewee_duties_name = #{searchArrangedInterviewList.intervieweeDutiesName}</if>
+		    <if test="searchArrangedInterviewList.type != null">AND B.type = #{searchArrangedInterviewList.type}</if>
+		    ORDER BY C.create_time DESC
+			 <if test="searchArrangedInterviewList.isPage == null">
+				LIMIT #{searchArrangedInterviewList.start}, #{searchArrangedInterviewList.limit}
+			</if>
+    </select>
+    
+    <!-- 面试官已经安排的面试列表 -->
+    <select id="findArrangedInterviewByInterviewerList" resultMap="findArrangedInterviewListDto">
+        SELECT
+		  A.resume_distribution_id,
+		  A.id AS interviewerOrderId,
+		  B.id AS interviewArrangementsId,
+		  A.resume_id as resumeId,
+		  A.interviewee_name as intervieweeName,
+		  A.interviewee_phone as intervieweePhone,
+		  A.interviewee_duties_id as intervieweeDutiesId,
+		  A.interviewee_duties_name as intervieweeDutiesName,
+		  A.interviewee_mail as intervieweeMail,
+		  A.school_id as schoolId,
+		  A.school_name as schoolName,
+		  A.resume_filename as resumeFilename,
+		  A.resume_path as resumePath,
+		  A.id_number as idNumber,
+		  A.resume_commissioner_id as resumeCommissionerId,
+		  A.resume_commissioner_name as resumeCommissionerName,
+		  A.resume_distribution_id as resumeDistributionId,
+		  B.interviewer_id as interviewerId,
+		  B.interviewer_name as interviewerName,
+		  B.interviewer_time as interviewerTime,
+		  B.type,
+		  B.interviewer_type as interviewerType,
+		  A.evaluation_result as evaluationResult,
+		  A.state,
+		  B.remarks,
+		  C.ranking
+		FROM interviewer_order A
+		  INNER JOIN interview_arrangements B
+		    ON (A.id = B.order_id AND A.del_flag = 0 AND B.del_flag=0) 
+		  LEFT JOIN school C ON (A.school_name = C.school_name)
+		    WHERE  1=1
+		    <if test="interviewArrangements.interviewerName != null">AND A.interviewee_name = #{interviewArrangements.interviewerName}</if>
+		    <if test="interviewArrangements.interviewArrangementsId != null">AND B.id = #{interviewArrangements.interviewArrangementsId}</if>
+		    <if test="interviewArrangements.interviewerId != null">AND B.interviewer_id = #{interviewArrangements.interviewerId}</if>
+		    <if test="interviewArrangements.orderId != null">AND A.id = #{interviewArrangements.orderId}</if>
+		    ORDER BY A.create_time DESC
+			 <if test="interviewArrangements.isPage == null">
+				LIMIT #{interviewArrangements.start}, #{interviewArrangements.limit}
+			</if>
+    </select>
+    
+    <!--  -->
+    <select id="findPassedCount" resultType="java.lang.Integer">
+    	select COUNT(1) 
+    	FROM <include refid="interviewerOrderTable"></include>
+    	WHERE 1=1 AND del_flag=0
+    	<if test="passedCountDto.intervieweeDutiesId != null">AND `interviewee_duties_id` = #{passedCountDto.intervieweeDutiesId}</if>
+    	<if test="passedCountDto.intervieweeDutiesName != null">AND `interviewee_duties_name` = #{passedCountDto.intervieweeDutiesName}</if>
+    	<if test="passedCountDto.state != null">AND `state` = #{passedCountDto.state}</if>
+    	
+    </select>
+           
+</mapper>

@@ -1,0 +1,13 @@
+._FF0000 {
+    color: #FF0000;
+}
+._0000FF {
+    color: #0000FF;
+}
+._000000 {
+    color: #000000;
+}
+.baseSection a{
+    color: blue;
+    cursor: pointer;
+}

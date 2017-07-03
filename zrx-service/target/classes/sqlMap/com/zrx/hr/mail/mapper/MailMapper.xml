@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.mail.mapper.MailMapper">
+
+	<sql id="mailTable">
+		sented_mail
+	</sql>
+	
+	<sql id="mailFields">
+		`id`, `sender`, `recipient`, `subject`, `content`, 
+		`send_main_id` as sendMainId, `type`, `state`, `create_time` as createTime, `del_flag` as delFlag
+	</sql>
+	
+	<sql id="searchMailCondition">
+		<if test="mail.id != null">AND `id` = #{mail.id}</if>
+	</sql>
+	
+	<sql id="limitMailCondition">
+		<if test="mail.isPage == null">
+			LIMIT #{mail.start}, #{mail.limit}
+		</if>
+	</sql>
+
+	<resultMap id="mail" type="com.zrx.hr.mail.domain.vo.Mail"></resultMap>
+	
+	<insert id="insertMail" parameterType="com.zrx.hr.mail.domain.vo.Mail">
+			
+		<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	      SELECT LAST_INSERT_ID()
+	    </selectKey>
+		
+		INSERT INTO <include refid="mailTable"></include>
+		(
+			`sender`, `recipient`, `subject`, `content`, 
+			`send_main_id`, `type`, `state`, `create_time`, `del_flag`
+		)
+		VALUES (
+			#{sender}, 
+			#{recipient}, 
+			#{subject}, 
+			#{content}, 
+			#{sendMainId}, 
+			#{type},
+			#{state},
+			NOW(),
+			#{delFlag}		
+		)
+		
+	</insert>
+	
+	<update id="updateMailByPrimaryKeySelective" parameterType="com.zrx.hr.mail.domain.vo.Mail" >
+	    UPDATE <include refid="mailTable"></include>
+	    <set>
+	    	  `op_time` = NOW(),
+		      <if test="sender != null" >
+		        sender = #{sender},
+		      </if>
+		      <if test="recipient != null" >
+		        recipient = #{recipient},
+		      </if>
+		      <if test="subject != null" >
+		        subject = #{subject},
+		      </if>
+		      <if test="content != null" >
+		        content = #{content},
+		      </if>
+		      <if test="sendMainId != null" >
+		        send_main_id = #{sendMainId},
+		      </if>
+		      <if test="type != null" >
+		        type = #{type},
+		      </if>
+		      <if test="state != null" >
+		        state = #{state},
+		      </if>
+	    </set>
+	    WHERE id = #{id}
+  	</update>
+
+    <select id="findMail" resultMap="mail">
+        SELECT
+           <include refid="mailFields"></include>
+        FROM  <include refid="mailTable"></include>
+        WHERE 1=1
+        	<include refid="searchMailCondition"></include>        		
+        ORDER BY `create_time` DESC
+        <include refid="limitMailCondition"></include>        
+    </select>
+    
+           
+</mapper>

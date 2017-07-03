@@ -1,0 +1,7 @@
+1. 将两个XML文件放到 ECLIPSE_HOME
+2. 打开eclipse -> Window -> Preferences -> 输入 Formatter 
+	选择Java-> Code Style -> Formatter -> Import 选择 formatter.xml
+3. 打开eclipse -> Window -> Preferences -> 输入 Formatter 
+	选择Java-> Code Style -> Code Templates -> Import 选择 codetemplates.xml
+
+好了，大功告成

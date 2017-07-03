@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="Bookmark" href="/favicon.ico">
+		<link rel="Shortcut Icon" href="/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/H-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/H-ui.admin.css" />
+		<link rel="stylesheet" type="text/css" href="../../lib/Hui-iconfont/1.0.8/iconfont.css" />
+		<title>新增权限</title>
+	</head>
+
+	<body>
+		<article class="page-container">
+			<div class="form form-horizontal" id="form-admin-role-add">
+				<div class="row cl">
+					<label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>起始日期：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" onfocus="WdatePicker({ minDate:'%y-%M-%d',maxDate:'#F{$dp.$D(\'logmax\')}' })" id="logmin" class="input-text Wdate" style="width:120px;" name="startFreezenDate" ver-required="true">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>时间：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<select name="startAmPm" id="" class="input-text">
+							<option value="0">上午</option>
+							<option value="1">下午</option>
+						</select>
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>结束日期：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}'})" id="logmax" class="input-text Wdate" style="width:120px;" name="endFreezenDate" ver-required="true">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>时间：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<select name="endAmPm" id="endAmPm" class="input-text">
+							<option value="0">上午</option>
+							<option value="1">下午</option>
+						</select>
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>面试官：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<select name="interviewerName" id="interviewerName"class="input-text" >
+							<option value="全部">全部</option>
+						</select>
+					</div>
+				</div>
+				<div class="row cl dutiesName-box" style="display:none;">
+					<label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>职务：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" value="" placeholder="" id="dutiesName" name="dutiesName">
+					</div>
+				</div>
+				<div class="row cl jobNumber-box none" style="display:none;">
+					<label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>工号：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" value="" placeholder="" id="jobNumber" name="jobNumber">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>状态设置：</label>
+					<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+						<div class="radio-box" style="padding-left:0;">
+							<input name="delFlag" type="radio" id="sex-1" checked value="0">
+							<label for="sex-1">生效</label>
+						</div>
+						<div class="radio-box" style="padding-left:0;">
+							<input type="radio" id="sex-2" name="delFlag" value="1">
+							<label for="sex-2">未生效</label>
+						</div>
+					</div>
+				</div>
+				<div class="row cl text-r" style="margin: 20px 63px 0 0;">
+					<button type="submit" class="btn btn-success radius" id="admin-role-save" name="admin-role-save"><i class="icon-ok"></i> 确定</button>
+				</div>
+			</div>
+		</article>
+		<!--_footer 作为公共模版分离出去-->
+		<script type="text/javascript" src="../../lib/jquery/1.9.1/jquery.min.js"></script>
+		<script src="../../modules/importCss.js"></script>
+		<script src="../../modules/importJS.js"></script>
+		<script type="text/javascript" src="../../lib/layer/2.4/layer.js"></script>
+		<script type="text/javascript" src="../../static/js/H-ui.min.js"></script>
+		<script type="text/javascript" src="../../static/js/H-ui.admin.js"></script>
+		<script type="text/javascript" src="../../lib/My97DatePicker/4.8/WdatePicker.js"></script>
+		<script src="../../static/js/admin/admin-time-add.js"></script>
+		
+	</body>
+
+</html>

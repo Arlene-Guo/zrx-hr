@@ -1,0 +1,8 @@
+#\u6B63\u5F0F\u73AF\u5883-AMQ\u5730\u5740
+tsp.amq.address=tcp://bj-tspmq-master.org:61616,tcp://bj-tspmq-slave-01.org:61616,tcp://bj-tspmq-slave-02.org:61616
+#\u6B63\u5F0F\u73AF\u5883-\u6CE8\u518C\u4E2D\u5FC3\u8FDE\u63A5\u5730\u5740
+tsp.registry.address=bj-tspregister-master.org:9989,bj-tspregister-slave.org:9989
+#\u5F00\u53D1\u73AF\u5883-\u6587\u672C\u4FDD\u5B58\u5730\u5740
+tsp.commonClient.dir=/opt/tomcat_hqb_hmng_01
+#\u542F\u52A8\u6A21\u5F0F 0 \u666E\u901A\u6A21\u5F0F, 1 \u4E3B\u7EBF\u7A0B\u963B\u585E\u76F4\u81F3\u6536\u5230\u670D\u52A1\u7684\u56DE\u5E94
+tsp.clientMode=1

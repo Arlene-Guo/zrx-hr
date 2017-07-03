@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.user.mapper.RoleMapper">
+
+	<sql id="roleTable">
+		role
+	</sql>
+	
+	<sql id="roleFields">
+		`id`, `role_name` as roleName, `description`, `create_time` as createTime, `del_flag` as delFlag
+	</sql>
+	
+
+	<resultMap id="role" type="com.zrx.hr.user.domain.vo.Role"></resultMap>
+	
+	
+	<insert id="saveOrUpdateRole" keyProperty="id" useGeneratedKeys="true">
+		<selectKey keyProperty="count" resultType="java.lang.Integer" order="BEFORE">
+			SELECT COUNT(1) FROM <include refid="roleTable"></include>
+			WHERE id = #{role.id}
+		</selectKey>
+		<if test="count == 0">
+			INSERT INTO <include refid="roleTable"></include> 
+			(
+				`role_name`, `description`, `create_time`
+			)
+			VALUES (
+				#{role.roleName},
+				#{role.descript},
+				NOW()
+			)
+		</if>
+		<if test="count > 0">
+			UPDATE <include refid="roleTable"></include> 
+			<set> 
+			`op_time` = NOW(),
+			<if test="role.roleName!=null">`role_name` = #{role.roleName},</if>
+			<if test="role.descript!=null">`description` = #{role.descript},</if>
+			<if test="users.delFlag!=null">`del_flag` = #{users.delFlag},</if>
+			</set>
+			WHERE id = #{users.id}
+		</if>
+	</insert>
+
+    <select id="findRole" resultMap="role">
+        SELECT
+           <include refid="roleFields"></include>
+        FROM  <include refid="roleTable"></include>
+        WHERE del_flag=0
+    </select>
+    
+</mapper>

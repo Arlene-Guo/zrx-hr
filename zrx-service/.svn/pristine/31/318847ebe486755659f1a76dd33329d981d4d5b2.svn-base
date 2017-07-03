@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.freezentime.mapper.FreezenTimeMapper">
+
+	<sql id="freezenTimeTable">
+		freezen_time
+	</sql>
+	
+	<sql id="searchFreezenTimeListDtoFields">
+		`id`, `start_freezen_date` as startFreezenDate, `start_am_pm` as startAmPm, `end_freezen_date` as endFreezenDate, `end_am_pm` as endAmPm, 
+		`is_every` as isEvery, `interviewer_id` as interviewerId, `interviewer_name` as interviewerName, `duties_number` as dutiesNumber, `duties_name` as dutiesName,
+		 `job_number` as jobNumber, `create_time` as createTime, `del_flag` as delFlag,`company`
+	</sql>
+	
+	<sql id="searchFreezenTimeListDtoCondition">
+		<if test="freezenTime.id != null">AND `id` = #{freezenTime.id}</if>
+		<if test="freezenTime.interviewerId != null">AND `interviewer_id` = #{freezenTime.interviewerId}</if>
+	</sql>
+	
+	<sql id="limitFreezenTimeCondition">
+		<if test="freezenTime.isPage == null">
+			LIMIT #{freezenTime.start}, #{freezenTime.limit}
+		</if>
+	</sql>
+
+	<resultMap id="freezenTime" type="com.zrx.hr.freezentime.domain.vo.FreezenTime"></resultMap>
+	
+	<resultMap id="searchFreezenTimeListDto" type="com.zrx.hr.freezentime.domain.dto.SearchFreezenTimeListDto"></resultMap>
+	
+	<insert id="saveOrUpdateFreezenTime" keyProperty="id" useGeneratedKeys="true">
+		<selectKey keyProperty="count" resultType="java.lang.Integer" order="BEFORE">
+			SELECT COUNT(1) FROM <include refid="freezenTimeTable"></include>
+			WHERE id = #{freezenTime.id}
+		</selectKey>
+		<if test="count == 0">
+			INSERT INTO <include refid="freezenTimeTable"></include> 
+			
+			<trim prefix="(" suffix=")" suffixOverrides="," >
+				<if test="freezenTime.startFreezenDate != null">start_freezen_date,</if>
+				<if test="freezenTime.startAmPm != null">start_am_pm,</if>
+				<if test="freezenTime.endFreezenDate != null">end_freezen_date,</if>
+				<if test="freezenTime.endAmPm != null">end_am_pm,</if>
+				<if test="freezenTime.isEvery != null">is_every,</if>
+				<if test="freezenTime.interviewerId != null">interviewer_id,</if>
+				<if test="freezenTime.interviewerName != null">interviewer_name,</if>
+				<if test="freezenTime.dutiesNumber != null">duties_number,</if>
+				<if test="freezenTime.dutiesName != null">duties_name,</if>
+				<if test="freezenTime.jobNumber != null">job_number,</if>
+				<if test="freezenTime.company != null">company,</if>
+				create_time
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides="," >
+				<if test="freezenTime.startFreezenDate != null">#{freezenTime.startFreezenDate},</if>
+				<if test="freezenTime.startAmPm != null">#{freezenTime.startAmPm},</if>
+				<if test="freezenTime.endFreezenDate != null">#{freezenTime.endFreezenDate},</if>
+				<if test="freezenTime.endAmPm != null">#{freezenTime.endAmPm},</if>
+				<if test="freezenTime.isEvery != null">#{freezenTime.isEvery},</if>
+				<if test="freezenTime.interviewerId != null">#{freezenTime.interviewerId},</if>
+				<if test="freezenTime.interviewerName != null">#{freezenTime.interviewerName},</if>
+				<if test="freezenTime.dutiesNumber != null">#{freezenTime.dutiesNumber},</if>
+				<if test="freezenTime.dutiesName != null">#{freezenTime.dutiesName},</if>
+				<if test="freezenTime.jobNumber != null">#{freezenTime.jobNumber},</if>
+				<if test="freezenTime.company != null">#{freezenTime.company},</if>
+				NOW()
+			</trim>
+			<!-- (
+				`start_freezen_date`, `start_am_pm`, `end_freezen_date`, `end_am_pm`, 
+				`is_every`, `interviewer_id`, `interviewer_name`, `duties_number`, `duties_name`,
+				`job_number`, `create_time`
+			)
+			VALUES (
+				#{freezenTime.startFreezenDate}, 
+				#{freezenTime.startAmPm}, 
+				#{freezenTime.endFreezenDate}, 
+				#{freezenTime.endAmPm}, 
+				#{freezenTime.isEvery}, 
+				#{freezenTime.interviewerId},
+				#{freezenTime.interviewerName},
+				#{freezenTime.dutiesNumber},
+				#{freezenTime.dutiesName},
+				#{freezenTime.jobNumber},
+				NOW()
+			) -->
+		</if>
+		<if test="count > 0">
+			UPDATE <include refid="freezenTimeTable"></include> 
+			<set> 
+			`op_time` = NOW(),
+			<if test="freezenTime.startFreezenDate != null">`start_freezen_date` = #{freezenTime.startFreezenDate},</if>
+			<if test="freezenTime.startAmPm != null">`start_am_pm` = #{freezenTime.startAmPm},</if>
+			<if test="freezenTime.endFreezenDate != null">`end_freezen_date` = #{freezenTime.endFreezenDate},</if>
+			<if test="freezenTime.endAmPm != null">`end_am_pm` = #{freezenTime.endAmPm},</if> 
+			<if test="freezenTime.interviewerId != null">`interviewer_id` = #{freezenTime.interviewerId},</if>
+			<if test="freezenTime.isEvery != null">`is_every` = #{freezenTime.isEvery},</if>
+			<if test="freezenTime.interviewerName != null">`interviewer_name` = #{freezenTime.interviewerName},</if>
+			<if test="freezenTime.dutiesNumber != null">`duties_number` = #{freezenTime.dutiesNumber},</if>
+			<if test="freezenTime.dutiesName != null ">`duties_name` = #{freezenTime.dutiesName},</if>
+			<if test="freezenTime.jobNumber != null">`job_number` = #{freezenTime.jobNumber},</if>
+			<if test="freezenTime.delFlag != null">`del_flag` = #{freezenTime.delFlag},</if>
+			<if test="freezenTime.company != null">`company` = #{freezenTime.company},</if>
+			</set>
+			WHERE id = #{freezenTime.id}
+		</if>
+	</insert>
+
+    <select id="findFreezenTimeList" resultMap="searchFreezenTimeListDto">
+        SELECT
+           <include refid="searchFreezenTimeListDtoFields"></include>
+        FROM  <include refid="freezenTimeTable"></include>
+        WHERE 1=1 AND del_flag = 0
+        	<include refid="searchFreezenTimeListDtoCondition"></include>        		
+        ORDER BY `create_time` DESC
+        <include refid="limitFreezenTimeCondition"></include>        
+    </select>
+    
+     <select id="isFreezenList" resultMap="searchFreezenTimeListDto">
+        SELECT
+           <include refid="searchFreezenTimeListDtoFields"></include>
+        FROM  <include refid="freezenTimeTable"></include>
+        WHERE del_flag = 0 AND `is_every` = 0 
+        <if test="uid != null"> AND `interviewer_id` = #{uid}</if>
+        UNION ALL
+        SELECT
+           <include refid="searchFreezenTimeListDtoFields"></include>
+        FROM  <include refid="freezenTimeTable"></include>
+        WHERE del_flag = 0 AND `is_every` = 1	      		
+    </select>
+    
+           
+</mapper>

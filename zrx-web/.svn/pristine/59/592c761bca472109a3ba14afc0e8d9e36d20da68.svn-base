@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd" default-lazy-init="true">
+
+	<!-- 监控中心配置 全局配置 -->
+	<bean id="monitor" class="com.tuniu.operation.platform.tsg.monitor.Monitor" destroy-method="stop">
+		<property name="brokerURL" value="failover://(${tsp.amq.address})?randomize=false&amp;jms.useAsyncSend=true" />
+		<property name="queueName" value="queue.pla.tsp.monitor.log" />
+	</bean>
+
+	<!-- 注册中心配置 全局配置 -->
+	<bean id="registerConfig" class="com.tuniu.operation.platform.tsg.client.config.RegisterConfig">
+		<property name="registryAddress" value="${tsp.registry.address}" />
+	</bean>
+
+	<!-- 消费者配置 应用自行修改 -->
+	<bean id="consumerConfig" class="com.tuniu.operation.platform.tsg.client.config.ConsumerConfig" lazy-init="false">
+		<property name="refferenceService">
+			<list>
+				<value>PGA.Order.OrderController.queryOnlineSign</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- TSP客户端配置 应用自行修改 -->
+	<bean id="tspCommonClient" class="com.tuniu.operation.platform.tsg.client.proxy.tsg.TSPCommonClient" destroy-method="stop">
+		<property name="consumerConfig" ref="consumerConfig" />
+<!-- 		<property name="providerConfig" ref="providerConfig" /> -->
+		<property name="registerConfig" ref="registerConfig" />
+		<property name="dir" value="${tsp.commonClient.dir}" />
+		<property name="connectTimeout" value="10" /><!-- 连接超时时间配置 应用可选配置，不配置将默认为2秒 -->
+		<property name="socketTimeout" value="10" /> <!-- Socket连接超时时间配置 应用可选配置，不配置将默认为2秒 -->
+		<property name="clientMode" value="${tsp.clientMode}" />
+	</bean>
+</beans>

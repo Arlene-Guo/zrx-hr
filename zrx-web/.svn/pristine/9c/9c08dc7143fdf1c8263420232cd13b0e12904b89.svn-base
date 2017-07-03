@@ -1,0 +1,1076 @@
+.TNScheduleEditorWrap {
+  margin-top: 5px;
+  margin-left: 5px;
+  width: 900px;
+  height: 700px;
+  border: 1px solid #c5c5c5;
+  background: url(http://crm.tuniu.com/css/POEditor/images/logo.gif) 0% 100% no-repeat white; }
+  .TNScheduleEditorWrap .btn_xs {
+    height: 22px;
+    padding: 2px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px; }
+  .TNScheduleEditorWrap .sch_top_banner {
+    border: 1px solid #c5c5c5;
+    margin-bottom: 5px;
+    background-color: #f0f0ee;
+    height: 25px; }
+    .TNScheduleEditorWrap .sch_top_banner .btn {
+      border-radius: 2px; }
+  .TNScheduleEditorWrap .sch_msg_box {
+    padding: 1px;
+    background-color: #fbff73;
+    color: red;
+    border: 1px solid #32cd32;
+    border-radius: 4px;
+    margin-right: 10px; }
+    .TNScheduleEditorWrap .sch_msg_box .sch_msg_text {
+      padding-left: 2px; }
+  .TNScheduleEditorWrap .sch_days_list, .TNScheduleEditorWrap .sch_content_top, .TNScheduleEditorWrap .sch_preview {
+    overflow-y: auto;
+    height: 666px;
+    padding-left: 5px;
+    padding-right: 5px; }
+  .TNScheduleEditorWrap .sch_hide {
+    display: none; }
+  .TNScheduleEditorWrap input[type="file"].sch_hide {
+    display: none !important; }
+  .TNScheduleEditorWrap ul, .TNScheduleEditorWrap li {
+    list-style: none outside none; }
+  .TNScheduleEditorWrap a:link, .TNScheduleEditorWrap a:visited, .TNScheduleEditorWrap a:active, .TNScheduleEditorWrap a:hover {
+    text-decoration: none; }
+  .TNScheduleEditorWrap .nav > li > a {
+    padding: 3px 10px; }
+  .TNScheduleEditorWrap .dropdown-menu {
+    min-width: 80px; }
+    .TNScheduleEditorWrap .dropdown-menu li a {
+      padding-left: 2px;
+      padding-right: 2px; }
+  .TNScheduleEditorWrap ::-webkit-scrollbar {
+    width: 6px; }
+  .TNScheduleEditorWrap ::-webkit-scrollbar-track {
+    background-color: #d3d3d3; }
+  .TNScheduleEditorWrap ::-webkit-scrollbar-thumb {
+    background-color: #696969; }
+  .TNScheduleEditorWrap ::-webkit-scrollbar-button {
+    background-color: #d3d3d3; }
+  .TNScheduleEditorWrap ::-webkit-scrollbar-corner {
+    background-color: black; }
+  .TNScheduleEditorWrap .float_right {
+    float: right; }
+  .TNScheduleEditorWrap .list-group {
+    margin-bottom: 10px; }
+  .TNScheduleEditorWrap .panel {
+    margin-bottom: 10px; }
+  .TNScheduleEditorWrap .panel-heading {
+    padding-top: 3px;
+    padding-bottom: 3px; }
+  .TNScheduleEditorWrap .panel-body {
+    padding: 6px; }
+  .TNScheduleEditorWrap .day_banner span {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: red; }
+  .TNScheduleEditorWrap .sch_day {
+    padding: 8px; }
+    .TNScheduleEditorWrap .sch_day .text_left {
+      float: left;
+      width: 63%; }
+      .TNScheduleEditorWrap .sch_day .text_left a {
+        color: black;
+        height: 21px;
+        line-height: 21px;
+        overflow: hidden;
+        display: block; }
+    .TNScheduleEditorWrap .sch_day .btn_right {
+      width: 20%; }
+    .TNScheduleEditorWrap .sch_day .btn_add_day {
+      margin-left: 15px; }
+    .TNScheduleEditorWrap .sch_day .dropdown-menu {
+      left: -60px; }
+  .TNScheduleEditorWrap .drag_city_wrap ul {
+    padding-left: 8px; }
+  .TNScheduleEditorWrap .day_city {
+    padding-bottom: 3px; }
+    .TNScheduleEditorWrap .day_city .city_transport_selector {
+      width: 55px;
+      height: 20px;
+      margin-left: 5px;
+      margin-top: 5px;
+      padding: 0;
+      background-color: lightsalmon;
+      color: black;
+      float: left; }
+  .TNScheduleEditorWrap .nav-header {
+    display: block; }
+    .TNScheduleEditorWrap .nav-header span {
+      color: #3f9f5f;
+      background-color: #ffff00;
+      font-weight: bold;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border-radius: 50%; }
+  .TNScheduleEditorWrap ul.wrap_days li:hover {
+    background-color: #b9def0; }
+  .TNScheduleEditorWrap .drag_city_wrap ul li {
+    float: left;
+    margin-left: 4px; }
+  .TNScheduleEditorWrap footer.item-type-selector {
+    height: 22px;
+    background-color: #DCF0F0; }
+    .TNScheduleEditorWrap footer.item-type-selector ul {
+      opacity: 0.6;
+      float: right;
+      margin-right: 2px; }
+      .TNScheduleEditorWrap footer.item-type-selector ul:hover {
+        opacity: 1; }
+      .TNScheduleEditorWrap footer.item-type-selector ul li {
+        float: left;
+        margin-left: 4px; }
+  .TNScheduleEditorWrap .wrapper_add_city {
+    clear: both;
+    margin-top: 40px; }
+    .TNScheduleEditorWrap .wrapper_add_city .add_city_text {
+      font-size: 0.9em;
+      padding: 5px;
+      display: inline-block;
+      text-align: center;
+      position: relative;
+      float: left; }
+  .TNScheduleEditorWrap .city_selector_wrap a {
+    display: block;
+    line-height: 20px;
+    padding: 0 6px; }
+  .TNScheduleEditorWrap .city_selector_wrap .city_options {
+    position: absolute;
+    top: 100%;
+    z-index: 1000;
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+    background-color: white; }
+    .TNScheduleEditorWrap .city_selector_wrap .city_options .city_option:hover {
+      background-color: greenyellow; }
+  .TNScheduleEditorWrap .city_selector_wrap input.required {
+    border: 1px solid red; }
+  .TNScheduleEditorWrap .transport_icon_selector a.disabled {
+    cursor: not-allowed;
+    background-color: #eeeeee; }
+  .TNScheduleEditorWrap .poi_img_selector {
+    clear: both;
+    width: 100%;
+    padding-bottom: 4px;
+    height: auto;
+    display: block;
+    border: 1px solid grey;
+    border-radius: 6px;
+    overflow: hidden; }
+    .TNScheduleEditorWrap .poi_img_selector .banner_text {
+      display: block; }
+      .TNScheduleEditorWrap .poi_img_selector .banner_text span {
+        text-align: center;
+        color: dodgerblue;
+        font-weight: bold; }
+      .TNScheduleEditorWrap .poi_img_selector .banner_text .btn_close_img_selector {
+        float: right; }
+  .TNScheduleEditorWrap .poi_img_wrap {
+    width: 31%;
+    padding: 0 2px 0 2px;
+    float: left; }
+    .TNScheduleEditorWrap .poi_img_wrap:hover {
+      border: 1px solid blue; }
+    .TNScheduleEditorWrap .poi_img_wrap img {
+      width: 100%; }
+  .TNScheduleEditorWrap .spot_selector_wrap a {
+    display: block;
+    line-height: 20px;
+    padding: 0 6px; }
+  .TNScheduleEditorWrap .spot_selector_wrap .spot_img_wrap {
+    padding: 0; }
+  .TNScheduleEditorWrap .spot_selector_wrap .btn_change_pic, .TNScheduleEditorWrap .spot_selector_wrap .btn_select_pic {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+    height: 30%;
+    background-color: deepskyblue;
+    opacity: 0.4; }
+    .TNScheduleEditorWrap .spot_selector_wrap .btn_change_pic:hover, .TNScheduleEditorWrap .spot_selector_wrap .btn_select_pic:hover {
+      opacity: 1; }
+  .TNScheduleEditorWrap .spot_selector_wrap .btn_select_pic {
+    top: 0;
+    bottom: auto; }
+  .TNScheduleEditorWrap .spot_selector_wrap img {
+    width: 100%;
+    padding-bottom: 4px; }
+  .TNScheduleEditorWrap .spot_selector_wrap .spot_options {
+    position: absolute;
+    top: 100%;
+    z-index: 1000;
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+    background-color: white; }
+    .TNScheduleEditorWrap .spot_selector_wrap .spot_options .spot_option:hover {
+      background-color: greenyellow; }
+  .TNScheduleEditorWrap .hour_minite input {
+    width: 23px;
+    border: 1px solid #cccccc;
+    border-radius: 4px; }
+  .TNScheduleEditorWrap .hour_minite select {
+    width: 44px;
+    border: 1px solid #cccccc;
+    border-radius: 4px; }
+  .TNScheduleEditorWrap .hour_minite select[disabled] {
+    width: 40px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: ''; }
+  .TNScheduleEditorWrap .hour_minite select.arrival_days {
+    width: 65px; }
+  .TNScheduleEditorWrap .sch_content, .TNScheduleEditorWrap .sch_title {
+    width: 100%;
+    border: 1px solid #cccccc;
+    border-radius: 4px; }
+  .TNScheduleEditorWrap .transport_icon_options {
+    clear: both;
+    position: absolute;
+    top: 100%;
+    z-index: 1000;
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+    background-color: white; }
+    .TNScheduleEditorWrap .transport_icon_options a {
+      display: block;
+      line-height: 20px;
+      padding: 0 6px; }
+    .TNScheduleEditorWrap .transport_icon_options a:hover {
+      background-color: #f7e1b5; }
+  .TNScheduleEditorWrap .btn_save_item {
+    float: left;
+    margin-left: 5px; }
+  .TNScheduleEditorWrap .rich_text_wrapper {
+    padding-top: 3px;
+    padding-bottom: 3px; }
+  .TNScheduleEditorWrap .one_rich_text {
+    width: 47%;
+    float: left;
+    height: 70px;
+    overflow: hidden;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px; }
+    .TNScheduleEditorWrap .one_rich_text .btn_change_pic, .TNScheduleEditorWrap .one_rich_text .btn_select_pic {
+      display: block;
+      cursor: pointer;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 2;
+      width: 100%;
+      height: 25px;
+      background-color: deepskyblue;
+      opacity: 0.4; }
+      .TNScheduleEditorWrap .one_rich_text .btn_change_pic:hover, .TNScheduleEditorWrap .one_rich_text .btn_select_pic:hover {
+        opacity: 1; }
+    .TNScheduleEditorWrap .one_rich_text .btn_select_pic {
+      top: 0;
+      bottom: auto; }
+    .TNScheduleEditorWrap .one_rich_text .pic_area {
+      width: 35%;
+      float: left;
+      padding-bottom: 5px;
+      clear: both;
+      position: relative;
+      height: 70px;
+      overflow: hidden; }
+      .TNScheduleEditorWrap .one_rich_text .pic_area .pic_url {
+        width: 100%; }
+    .TNScheduleEditorWrap .one_rich_text .text_area {
+      width: 65%;
+      float: left; }
+      .TNScheduleEditorWrap .one_rich_text .text_area .pic_title {
+        width: 85%;
+        margin-left: 3px;
+        margin-top: 2px;
+        border-radius: 4px; }
+      .TNScheduleEditorWrap .one_rich_text .text_area .btn_del_pic_text {
+        float: right; }
+      .TNScheduleEditorWrap .one_rich_text .text_area .pic_desc {
+        width: 85%;
+        margin-left: 3px;
+        margin-top: 2px;
+        border-radius: 4px; }
+      .TNScheduleEditorWrap .one_rich_text .text_area .btn_add_pic_text {
+        float: right;
+        margin-top: 20px; }
+  .TNScheduleEditorWrap .btn_add_pic_text_first {
+    display: inline-block;
+    float: left;
+    margin-right: 500px; }
+  .TNScheduleEditorWrap .readonly input, .TNScheduleEditorWrap .readonly input.required, .TNScheduleEditorWrap .readonly select, .TNScheduleEditorWrap .readonly textarea {
+    border: 1px dashed #cccccc;
+    background-color: transparent; }
+  .TNScheduleEditorWrap .readonly textarea {
+    resize: none; }
+  .TNScheduleEditorWrap .readonly .btn_save_item, .TNScheduleEditorWrap .readonly .btn_change_pic, .TNScheduleEditorWrap .readonly .btn_select_pic, .TNScheduleEditorWrap .readonly .btn_add_pic_text, .TNScheduleEditorWrap .readonly .btn_del_pic_text, .TNScheduleEditorWrap .readonly .btn_add_shop, .TNScheduleEditorWrap .readonly .btn_del_shop, .TNScheduleEditorWrap .readonly .btn_add_pic_text_first {
+    display: none; }
+  .TNScheduleEditorWrap .shop_wrapper {
+    padding-top: 3px;
+    padding-bottom: 3px; }
+    .TNScheduleEditorWrap .shop_wrapper .shop_title {
+      background-color: #d3d3d3;
+      font-size: 0.8em;
+      font-weight: bold; }
+      .TNScheduleEditorWrap .shop_wrapper .shop_title .title {
+        margin-left: 3px;
+        margin-top: 2px;
+        display: inline-block; }
+    .TNScheduleEditorWrap .shop_wrapper .title_shop_name {
+      width: 15%; }
+    .TNScheduleEditorWrap .shop_wrapper .title_business_product {
+      width: 28%; }
+    .TNScheduleEditorWrap .shop_wrapper .title_wait_time {
+      width: 16%; }
+    .TNScheduleEditorWrap .shop_wrapper .title_description {
+      width: 25%; }
+  .TNScheduleEditorWrap .one_shop {
+    overflow: hidden;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px; }
+    .TNScheduleEditorWrap .one_shop .cell {
+      margin-left: 3px;
+      margin-top: 2px;
+      border-radius: 3px; }
+    .TNScheduleEditorWrap .one_shop .shop_name {
+      width: 15%; }
+    .TNScheduleEditorWrap .one_shop .business_product {
+      width: 28%; }
+    .TNScheduleEditorWrap .one_shop .wait_time {
+      width: 16%; }
+    .TNScheduleEditorWrap .one_shop .description {
+      width: 25%; }
+  .TNScheduleEditorWrap .item_top_wrap .btn_select_pic {
+    display: none; }
+  .TNScheduleEditorWrap .item_top_wrap[item_type="spot"] .btn_select_pic {
+    display: inline; }
+  .TNScheduleEditorWrap .html_preview .overview {
+    width: 93%;
+    float: right;
+    height: auto;
+    margin: 6px 0; }
+  .TNScheduleEditorWrap .html_preview .overview-title {
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    color: #333333;
+    font-size: 20px;
+    text-align: left;
+    border-bottom: 1px solid #e6e6e6; }
+  .TNScheduleEditorWrap .html_preview .overview-wrap {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+    position: relative; }
+  .TNScheduleEditorWrap .html_preview .overview-day {
+    width: 57px;
+    height: auto;
+    margin-top: 5px;
+    /*position: absolute;*/
+    /*top: 5px;*/
+    /*left: 0;*/
+    /*z-index: 3;*/
+    float: left; }
+  .TNScheduleEditorWrap .html_preview .overday {
+    position: fixed;
+    top: 0;
+    z-index: 3; }
+  .TNScheduleEditorWrap .html_preview .overview-day .daytag {
+    display: block;
+    width: 57px;
+    height: 30px;
+    background: #dddddd;
+    color: #fff;
+    font-size: 14px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 30px;
+    margin-bottom: 5px; }
+  .TNScheduleEditorWrap .html_preview .overview-day .current {
+    background: #68cc3d; }
+  .TNScheduleEditorWrap .html_preview .overview-day a:hover {
+    background: #68cc3d; }
+  .TNScheduleEditorWrap .html_preview .overview-travel {
+    width: 100%;
+    height: auto;
+    /*margin-left: 172px;*/
+    margin-top: 5px;
+    float: right; }
+  .TNScheduleEditorWrap .html_preview .overview-travel .triplist {
+    border-left: 2px solid #eaeaea;
+    margin-bottom: 30px;
+    padding-bottom: 40px;
+    position: relative; }
+  .TNScheduleEditorWrap .html_preview .overview-travel .triplist .trips {
+    position: relative;
+    padding-left: 45px; }
+  .TNScheduleEditorWrap .html_preview .triplist .destination {
+    width: 100%;
+    height: auto;
+    padding: 0 0 15px 0;
+    position: relative; }
+  .TNScheduleEditorWrap .html_preview .triplist .destination .date {
+    width: 100%;
+    height: 24px;
+    line-height: 24px; }
+  .TNScheduleEditorWrap .html_preview .triplist .destination .name {
+    width: 100%;
+    height: 30px;
+    line-height: 30px; }
+  .TNScheduleEditorWrap .html_preview .triplist .destination .name span {
+    padding-right: 20px;
+    color: #333333;
+    font-size: 24px; }
+  .TNScheduleEditorWrap .html_preview .destination .date .dateday {
+    color: #2e9900;
+    font-size: 14px;
+    font-weight: bold; }
+  .TNScheduleEditorWrap .html_preview .destination .date .datetime {
+    color: #999999;
+    font-size: 14px;
+    font-weight: normal;
+    padding-left: 5px; }
+  .TNScheduleEditorWrap .html_preview .triplist .traffic {
+    /*height: 46px;*/
+    padding: 20px 0;
+    border: 1px solid #e6e6e6;
+    position: relative; }
+  .TNScheduleEditorWrap .html_preview .triplist .traffic .vehicle {
+    font-size: 16px;
+    color: #333;
+    height: 28px;
+    line-height: 28px;
+    margin-left: 30px; }
+  .TNScheduleEditorWrap .html_preview .triplist .traffic .vehicle .scheduled {
+    padding-right: 15px; }
+  .TNScheduleEditorWrap .html_preview .triplist .traffic .vehicle .start {
+    color: #999999;
+    font-size: 12px; }
+  .TNScheduleEditorWrap .html_preview .triplist .traffic .vehicle img {
+    padding: 0 5px;
+    width: 36px;
+    height: 20px;
+    vertical-align: middle; }
+  .TNScheduleEditorWrap .html_preview .triplist .traffic .vehicle .end {
+    color: #999999;
+    font-size: 12px; }
+  .TNScheduleEditorWrap .html_preview .triplist .traffic .scheduled-intro {
+    color: #999999;
+    font-size: 12px;
+    height: 24px;
+    line-height: 24px;
+    margin-left: 30px; }
+  .TNScheduleEditorWrap .html_preview .recommendintro {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px dotted #e6e6e6;
+    position: relative; }
+  .TNScheduleEditorWrap .html_preview .recommend {
+    color: #333333;
+    font-size: 12px;
+    line-height: 20px;
+    position: relative;
+    padding: 25px 0 20px 30px;
+    word-break: break-all; }
+  .TNScheduleEditorWrap .html_preview .recommend .ups {
+    left: -8px;
+    top: 14px; }
+  .TNScheduleEditorWrap .html_preview .recommend .downs {
+    bottom: 16px; }
+  .TNScheduleEditorWrap .html_preview .spot {
+    margin-top: 25px;
+    clear: both;
+    border-bottom: 1px dotted #e6e6e6;
+    position: relative; }
+  .TNScheduleEditorWrap .html_preview .spot .tag {
+    color: #44c255;
+    font-size: 12px;
+    background: #daf3dc;
+    padding: 3px 10px; }
+  .TNScheduleEditorWrap .html_preview .spot .spot-intro {
+    padding: 8px 0 6px 0;
+    clear: both; }
+  .TNScheduleEditorWrap .html_preview .spot .spot-intro .name {
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold; }
+  .TNScheduleEditorWrap .html_preview .spot .spot-intro .time {
+    color: #999999;
+    font-size: 12px;
+    font-weight: normal; }
+  .TNScheduleEditorWrap .html_preview .spot .spot-intro .spot-con {
+    width: 100%;
+    height: auto;
+    padding: 10px 0 0 0;
+    clear: both; }
+  .TNScheduleEditorWrap .html_preview .spot .spot-intro .spot-con .text {
+    /*width:70%;*/
+    color: #666666;
+    font-size: 12px;
+    line-height: 24px;
+    /*float: right;*/
+    padding-right: 20px;
+    margin-right: 3%;
+    word-break: break-all;
+    /*max-height: 130px;*/
+    overflow: hidden; }
+  .TNScheduleEditorWrap .html_preview .spot .spot-intro .spot-con .pic {
+    width: 25%;
+    float: left;
+    padding-top: 5px; }
+    .TNScheduleEditorWrap .html_preview .spot .spot-intro .spot-con .pic img {
+      width: 100%; }
+  .TNScheduleEditorWrap .html_preview .tavern {
+    padding: 20px 0 25px;
+    border-bottom: 1px dotted #e6e6e6;
+    position: relative; }
+  .TNScheduleEditorWrap .html_preview .tavern .title {
+    color: #666666;
+    font-size: 14px;
+    font-weight: bold;
+    padding-right: 50px; }
+  .TNScheduleEditorWrap .html_preview .tavern .intro {
+    color: #666666;
+    font-size: 14px; }
+  .TNScheduleEditorWrap .html_preview .dinner, .TNScheduleEditorWrap .html_preview .recommendintro {
+    padding: 20px 0 25px;
+    border-bottom: 1px dotted #e6e6e6;
+    position: relative; }
+  .TNScheduleEditorWrap .html_preview .dinner .title, .TNScheduleEditorWrap .html_preview .recommendintro .title {
+    color: #666666;
+    font-size: 14px;
+    font-weight: bold;
+    padding-right: 50px; }
+  .TNScheduleEditorWrap .html_preview .dinner .intro, .TNScheduleEditorWrap .html_preview .recommendintro .intro {
+    color: #666666;
+    font-size: 14px; }
+  .TNScheduleEditorWrap .html_preview .triptips {
+    padding: 20px 0 25px;
+    border-bottom: 1px dotted #e6e6e6;
+    position: relative; }
+  .TNScheduleEditorWrap .html_preview .triptips .title {
+    color: #666666;
+    font-size: 14px;
+    font-weight: bold;
+    padding-right: 50px; }
+  .TNScheduleEditorWrap .html_preview .triptips .intro {
+    color: #666666;
+    font-size: 14px; }
+  .TNScheduleEditorWrap .html_preview .space {
+    width: 100%;
+    height: 50px;
+    background: none;
+    clear: both; }
+  .TNScheduleEditorWrap .html_preview .tripend {
+    width: auto;
+    height: 60px;
+    line-height: 60px;
+    color: #ff8800;
+    font-size: 12px;
+    padding-left: 45px;
+    position: absolute;
+    bottom: -35px;
+    left: 0;
+    z-index: 2; }
+  .TNScheduleEditorWrap .html_preview .dayicon {
+    width: 48px;
+    height: 55px;
+    position: absolute;
+    left: -70px;
+    top: 0;
+    z-index: 2;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #fff; }
+  .TNScheduleEditorWrap .html_preview .dayicon .daytext {
+    width: 100%;
+    height: 100%;
+    background-position: -1px -126px; }
+  .TNScheduleEditorWrap .html_preview .lineicon {
+    width: 76px;
+    height: 21px;
+    position: absolute;
+    left: -113px;
+    top: 32px;
+    z-index: 2;
+    background: #fff; }
+  .TNScheduleEditorWrap .html_preview .lineicon-time {
+    width: 55px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    text-align: center;
+    color: #999999;
+    font-size: 12px;
+    line-height: 21px;
+    background-position: 0 -186px; }
+  .TNScheduleEditorWrap .html_preview .lineicon-bus {
+    width: 20px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    background-position: -77px -213px; }
+  .TNScheduleEditorWrap .html_preview .lineicon-act {
+    width: 20px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    background-position: -104px -212px; }
+  .TNScheduleEditorWrap .html_preview .lineicon-air {
+    width: 20px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    background-position: -52px -212px; }
+  .TNScheduleEditorWrap .html_preview .lineicon-spot {
+    width: 20px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    background-position: -155px -213px; }
+  .TNScheduleEditorWrap .html_preview .lineicon-din {
+    width: 20px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    background-position: -26px -211px; }
+  .TNScheduleEditorWrap .html_preview .lineicon-res {
+    width: 20px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    background-position: -180px -213px; }
+  .TNScheduleEditorWrap .html_preview .lineicon-tip {
+    width: 20px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    background-position: -129px -214px; }
+  .TNScheduleEditorWrap .html_preview .lineicon-goods {
+    width: 20px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    background-position: -7px -213px; }
+  .TNScheduleEditorWrap .html_preview .spot .lineicon {
+    top: 0; }
+  .TNScheduleEditorWrap .html_preview .dinner .lineicon, .TNScheduleEditorWrap .html_preview .tavern .lineicon, .TNScheduleEditorWrap .html_preview .triptips .lineicon, .TNScheduleEditorWrap .html_preview .recommendintro .lineicon {
+    top: 20px; }
+  .TNScheduleEditorWrap .html_preview .endicon {
+    width: 14px;
+    height: 12px;
+    position: absolute;
+    bottom: -11px;
+    left: -8px;
+    z-index: 3;
+    background-position: -139px -187px; }
+  .TNScheduleEditorWrap .html_preview .det-icon {
+    background-image: url(http://admin.tuniu.org/assets/plug/TNScheduleEditor/assets/images/detaisicon.png); }
+  .TNScheduleEditorWrap .web_preview {
+    /*style for spot dialog*/ }
+    .TNScheduleEditorWrap .web_preview .m_trip_info {
+      font: normal normal 14px/18px "microsoft yahei";
+      color: #666; }
+    .TNScheduleEditorWrap .web_preview .m_trip_info h4 {
+      font-size: 18px;
+      height: 20px;
+      color: #333;
+      font-weight: bold;
+      position: relative; }
+    .TNScheduleEditorWrap .web_preview .m_trip_info h4 .line {
+      display: inline-block;
+      background: #f80;
+      height: 20px;
+      width: 4px;
+      margin-right: 5px;
+      vertical-align: middle;
+      border-radius: 2px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_info .info_table {
+      width: 100%;
+      background: #fff;
+      margin-top: 10px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_info .info_table td {
+      border: 1px solid #eaeaea;
+      text-align: center;
+      vertical-align: middle;
+      padding: 6px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_info .info_table thead td {
+      background: #fafafa;
+      height: 34px;
+      font-weight: bold;
+      color: #333; }
+    .TNScheduleEditorWrap .web_preview .m_bus_info .info_table tbody td {
+      height: 70px; }
+    .TNScheduleEditorWrap .web_preview .m_bus_info .col1 {
+      width: 110px; }
+    .TNScheduleEditorWrap .web_preview .m_bus_info .col2 {
+      width: 190px; }
+    .TNScheduleEditorWrap .web_preview .m_bus_info .col3 {
+      width: auto; }
+    .TNScheduleEditorWrap .web_preview .m_bus_info .col4 {
+      width: 445px;
+      position: relative; }
+    .TNScheduleEditorWrap .web_preview .m_bus_info .col4 p {
+      width: 385px;
+      margin: 8px 30px;
+      height: 54px;
+      min-height: 54px;
+      background: #fff;
+      overflow: hidden; }
+    .TNScheduleEditorWrap .web_preview .m_bus_info .col4 p:hover {
+      position: absolute;
+      height: auto;
+      overflow: visible;
+      margin: 0;
+      left: -1px;
+      top: -1px;
+      padding: 8px 30px;
+      border: 1px solid #eaeaea;
+      box-shadow: 0px 2px 3px #eaeaea;
+      z-index: 1; }
+    .TNScheduleEditorWrap .web_preview .m_trip_overview {
+      margin-top: 30px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_overview .download {
+      position: absolute;
+      height: 20px;
+      line-height: 20px;
+      right: 0;
+      font-size: 14px;
+      color: #2e9900;
+      font-weight: normal;
+      background: url(http://img4.tuniucdn.com/img/2014112716/tour/general_infor_theme.png) -99px -688px no-repeat;
+      padding-left: 20px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_overview .col1 {
+      width: 110px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_overview .col2 {
+      width: 160px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_overview .col3 {
+      width: 220px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_overview .col3 a {
+      color: #2e9900;
+      cursor: pointer; }
+    .TNScheduleEditorWrap .web_preview .m_trip_overview .col4 {
+      width: 220px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail {
+      margin-top: 25px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .detail_content {
+      position: relative;
+      margin-top: 10px;
+      margin-left: 133px;
+      border-left: 2px solid #eaeaea;
+      padding-left: 42px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .day_nav {
+      position: absolute;
+      top: 0;
+      left: -132px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .day_nav li {
+      width: 57px;
+      height: 30px;
+      line-height: 30px;
+      margin-bottom: 5px;
+      text-align: center;
+      background: #ddd;
+      border-radius: 2px;
+      color: #fff;
+      cursor: pointer; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .day_nav .cur {
+      color: #fff;
+      background: #68cc3d;
+      border-bottom: 1px solid #ddd; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .trip_day {
+      margin-top: 35px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .first_day {
+      margin-top: 0; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .day_title {
+      color: #68cc3d;
+      font: normal bold 20px/32px "microsoft yahei";
+      padding-bottom: 14px;
+      border-bottom: 1px solid #dddddd;
+      position: relative; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .day_title .u_traffic_icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 5px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .day_title .day {
+      width: 34px;
+      height: 38px;
+      position: absolute;
+      top: 0;
+      left: -60px;
+      text-align: center;
+      font: normal normal 14px/38px "microsoft yahei";
+      color: #fff; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .day_section {
+      font: normal normal 14px/20px "microsoft yahei";
+      color: #666;
+      border-bottom: 1px dotted #ddd;
+      padding: 15px 0; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .day_section.last {
+      border-bottom: none; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_title {
+      position: relative;
+      font-weight: bold;
+      color: #333;
+      font-size: 14px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_title img {
+      vertical-align: middle;
+      margin: 0 5px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_title_spot {
+      color: #2e9900;
+      cursor: pointer; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_title .timestamp {
+      position: absolute;
+      top: 0;
+      left: -110px;
+      width: 54px;
+      color: #999;
+      font: normal normal 12px/21px "arial";
+      text-align: center; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_title * {
+      vertical-align: middle; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_title .note {
+      color: #999;
+      margin: 0 5px;
+      font-weight: normal; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_title .section_icon {
+      position: absolute;
+      top: 0;
+      left: -55px;
+      width: 20px;
+      height: 20px;
+      background-color: #fff; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_note {
+      color: #999; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_content {
+      margin-top: 10px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_images {
+      margin-top: 15px;
+      overflow: hidden; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_images li {
+      float: left;
+      margin-right: 20px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_images img {
+      width: 240px;
+      height: 135px;
+      display: block; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_images p {
+      text-align: center;
+      line-height: 34px;
+      height: 34px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_images .last {
+      margin-right: 0; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_last {
+      border-bottom: none; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_table table {
+      width: 100%;
+      background: #fff;
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 18px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_table td {
+      border: 1px solid #eaeaea;
+      text-align: center;
+      vertical-align: middle; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_table thead td {
+      background: #fafafa;
+      height: 34px;
+      font-weight: bold;
+      color: #333; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_table tbody td {
+      height: 70px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_table .col1 {
+      width: auto; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_table .col2 {
+      width: auto; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_table .col3 {
+      width: auto; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_table .col4 {
+      width: auto;
+      position: relative;
+      z-index: 0; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_table .col4 p {
+      position: absolute;
+      width: 305px;
+      margin: 8px 30px;
+      height: 54px;
+      min-height: 54px;
+      top: 0;
+      left: 0;
+      background: #fff;
+      overflow: hidden;
+      z-index: 2; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_table .col4 p:hover {
+      height: auto;
+      overflow: visible;
+      margin: 0;
+      left: -1px;
+      top: -1px;
+      padding: 8px 30px;
+      border: 1px solid #eaeaea;
+      box-shadow: 0px 2px 3px #eaeaea; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_tip {
+      background: #f0fde9;
+      padding: 20px;
+      font-size: 14px;
+      color: #666;
+      line-height: 20px;
+      font-family: "microsoft yahei"; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_tip .tip_title {
+      color: #ff6600;
+      font-weight: bold; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_tip .u_trip_icon_light {
+      margin-right: 5px; }
+    .TNScheduleEditorWrap .web_preview .m_trip_detail .section_tip .tip_title * {
+      vertical-align: middle; }
+    .TNScheduleEditorWrap .web_preview .u_trip_res {
+      background: url("http://img.tuniucdn.com/img/201504170307/tour/trip_res.png") 0 0 no-repeat; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_ariplane {
+      width: 20px;
+      height: 20px;
+      background-position: -1px -3px; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_plain {
+      width: 20px;
+      height: 20px;
+      background-position: -1px -3px; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_bus {
+      width: 20px;
+      height: 20px;
+      background-position: -31px -1px; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_ship {
+      width: 20px;
+      height: 20px;
+      background-position: -57px -1px; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_metro {
+      width: 20px;
+      height: 20px;
+      background-position: -79px -1px; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_train {
+      width: 20px;
+      height: 20px;
+      background-position: -104px -1px; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_dinner {
+      width: 20px;
+      height: 20px;
+      background-position: 0 -30px; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_spot {
+      width: 20px;
+      height: 20px;
+      background-position: -30px -33px; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_hotel {
+      width: 20px;
+      height: 20px;
+      background-position: -60px -30px; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_flag {
+      width: 20px;
+      height: 20px;
+      background-position: -89px -30px; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_shop {
+      width: 20px;
+      height: 20px;
+      background-position: -120px -30px; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_label {
+      width: 20px;
+      height: 20px;
+      background-position: -145px -30px;
+      display: inline-block;
+      vertical-align: middle; }
+    .TNScheduleEditorWrap .web_preview .u_trip_icon_light {
+      width: 12px;
+      height: 12px;
+      background-position: -64px -63px;
+      display: inline-block;
+      vertical-align: middle; }
+    .TNScheduleEditorWrap .web_preview .u_download_bg {
+      background-position: -121px -59px; }
+    .TNScheduleEditorWrap .web_preview .u_timestamp_bg {
+      background-position: 0 -59px; }
+    .TNScheduleEditorWrap .web_preview .u_day_bg {
+      background-position: -60px -86px; }
+    .TNScheduleEditorWrap .web_preview .m_spot_dialog {
+      margin: 40px 20px 20px 20px; }
+    .TNScheduleEditorWrap .web_preview .m_spot_dialog .gy-gallery {
+      display: inline-block;
+      width: 780px;
+      height: 330px; }
+    .TNScheduleEditorWrap .web_preview .m_spot_dialog .gy-gallery .gy-nav {
+      border: none;
+      padding-bottom: 0;
+      height: 47px; }
+    .TNScheduleEditorWrap .web_preview .m_spot_dialog .gy-gallery .gy-controls {
+      display: none; }
+    .TNScheduleEditorWrap .web_preview .m_spot_dialog .gy-gallery .gy-nav .gy-thumbs {
+      margin-left: 31px;
+      width: 432px; }
+    .TNScheduleEditorWrap .web_preview .m_spot_dialog .gy-gallery .gy-back {
+      left: 0px; }
+    .TNScheduleEditorWrap .web_preview .m_spot_dialog .spot_intro {
+      display: inline-block;
+      margin-left: 10px;
+      width: 250px;
+      height: 328px;
+      border: 1px solid #ddd;
+      padding-left: 8px;
+      overflow: hidden; }
+    .TNScheduleEditorWrap .web_preview .m_spot_dialog .spot_intro .intro_title {
+      height: 32px;
+      font-weight: bold;
+      line-height: 32px;
+      font: normal normal 14px/32px "microsoft yahei";
+      border-bottom: 1px solid #ededed;
+      color: #666; }
+    .TNScheduleEditorWrap .web_preview .m_spot_dialog .spot_intro .intro_content {
+      font: normal normal 14px/22px "microsoft yahei";
+      color: #999;
+      height: 296px;
+      overflow-y: scroll; }
+    .TNScheduleEditorWrap .web_preview .layer_spot .xubox_title {
+      height: 52px; }
+    .TNScheduleEditorWrap .web_preview .layer_spot .xubox_title em {
+      display: inline-block;
+      height: 100%; }
+    .TNScheduleEditorWrap .web_preview .layer_spot .layer_spot_title {
+      font: normal normal 30px/52px "microsoft yahei";
+      font-weight: bold; }
+    .TNScheduleEditorWrap .web_preview .layer_spot .layer_spot_title span {
+      color: #ff8800;
+      margin-left: 13px;
+      font-size: 14px;
+      line-height: 52px;
+      font-weight: normal; }

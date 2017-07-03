@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.user.mapper.UserMapper">
+
+	<sql id="usersTable">
+		users
+	</sql>
+	
+	<sql id="usersFields">
+		`id`, `user_name` as userName, `pwd`, `job_number` as jobNumber, `duties_number` as dutiesNumber, 
+		`duties_name` as dutiesName, `duties_type` as dutiesType, `email`, `descript`, `create_time` as createTime, `del_flag` as delFlag
+	</sql>
+	
+	<sql id="dutiesNameFields">
+		`duties_number` as dutiesNumber, `duties_name` as dutiesName, `duties_type` as dutiesType, `descript`
+	</sql>
+	
+	<sql id="searchUsersListCondition">
+		<if test="users.id != null">AND `id` = #{users.id}</if>
+		<if test="users.userName != null">AND `user_name` = #{users.userName}</if>
+		<if test="users.dutiesName != null">AND `duties_name` = #{users.dutiesName}</if>
+	</sql>
+	
+	<sql id="limitUsersCondition">
+		<if test="users.isPage == null">
+			LIMIT #{users.start}, #{users.limit}
+		</if>
+	</sql>
+
+	<resultMap id="users" type="com.zrx.hr.user.domain.vo.Users"></resultMap>
+	
+	<resultMap id="findDutiesInfoDto" type="com.zrx.hr.user.domain.dto.FindDutiesInfoDto"></resultMap>
+	
+	
+	<insert id="insertBatch">
+        INSERT IGNORE INTO <include refid="usersTable"></include>
+            (
+				`user_name`, `pwd`, `job_number`, `duties_number`, 
+				`duties_name`, `duties_type`, `email`, `descript`, `create_time`
+			) 
+        VALUES
+            <foreach collection="records" separator="," item="record">
+                (
+				#{users.userName}, 
+				#{users.pwd}, 
+				#{users.jobNumber}, 
+				#{users.dutiesNumber}, 
+				#{users.dutiesName}, 
+				#{users.dutiesType},
+				#{users.email},
+				#{users.descript},
+				NOW()
+			    )
+            </foreach>
+    </insert>
+	
+	<insert id="saveOrUpdateUsers" keyProperty="id" useGeneratedKeys="true">
+		<selectKey keyProperty="count" resultType="java.lang.Integer" order="BEFORE">
+			SELECT COUNT(1) FROM <include refid="usersTable"></include>
+			WHERE id = #{users.id}
+		</selectKey>
+		<if test="count == 0">
+			INSERT INTO <include refid="usersTable"></include> 
+			(
+				`user_name`, `pwd`, `job_number`, `duties_number`, 
+				`duties_name`, `duties_type`, `email`, `descript`, `create_time`
+			)
+			VALUES (
+				#{users.userName}, 
+				#{users.pwd}, 
+				#{users.jobNumber}, 
+				#{users.dutiesNumber}, 
+				#{users.dutiesName}, 
+				#{users.dutiesType},
+				#{users.email},
+				#{users.descript},
+				NOW()
+			)
+		</if>
+		<if test="count > 0">
+			UPDATE users  
+			<set>
+			`op_time` = NOW(),
+			<if test="users.userName!=null">`user_name` = #{users.userName},</if>
+			<if test="users.pwd !=null">`pwd` = #{users.pwd},</if>
+			<if test="users.jobNumber!=null">`job_number` = #{users.jobNumber},</if>
+			<if test="users.dutiesNumber!=null">`duties_number` = #{users.dutiesNumber},</if>
+			<if test="users.dutiesName">`duties_name` = #{users.dutiesName},</if>
+			<if test="users.dutiesType">`duties_type` = #{users.dutiesType},</if>
+			<if test="users.email">`email` = #{users.email},</if>
+			<if test="users.descript">`descript` = #{users.descript},</if>
+			<if test="users.delFlag">`del_flag` = #{users.delFlag},</if>
+			</set>
+			WHERE id = #{users.id}
+		</if>
+		
+	</insert>
+
+    <select id="findUsers" resultMap="users">
+        SELECT
+           <include refid="usersFields"></include>
+        FROM  <include refid="usersTable"></include>
+        where 1=1 AND del_flag = 0
+        	<include refid="searchUsersListCondition"></include>        		
+        ORDER BY `create_time` desc
+        <include refid="limitUsersCondition"></include>        
+    </select>
+    
+    <select id="findDutiesInfoDto" resultMap="findDutiesInfoDto">
+        SELECT
+           <include refid="dutiesNameFields"></include>
+        FROM  <include refid="usersTable"></include>
+        WHERE del_flag=0
+        ORDER BY `duties_name` desc
+    </select>
+    
+           
+</mapper>

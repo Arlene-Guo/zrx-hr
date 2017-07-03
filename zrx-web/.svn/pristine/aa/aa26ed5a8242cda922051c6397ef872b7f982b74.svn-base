@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd     
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd     
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd     
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- 导入属性配置文件 -->
+	<!-- 使用跟spring相同的配置文件 -->
+	<context:property-placeholder location="classpath:*.properties" />
+
+	<!-- 设置使用注解的类所在的jar包 -->
+	<context:component-scan base-package="com.zrx.hr.**.controller">
+		<!-- 只扫描controller包下的类，排除Service注解，Service类是Spring容器提供 -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+
+	<!-- 完成请求和注解POJO的映射 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<!-- 通过supportedMediaTypes指定编码在3.1.1中并不生效，而修复版本中直接支持defaultCharset -->
+				<!-- 相关issues: https://jira.spring.io/browse/SPR-9160 相关commit: https://github.com/spring-projects/spring-framework/commit/9e37020 -->
+				<constructor-arg name="defaultCharset" value="UTF-8" />
+				<property name="writeAcceptCharset" value="false" />
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain; charset=UTF-8</value>
+						<value>text/html; charset=UTF-8</value>
+						<value>text/*; charset=UTF-8</value>
+						<!-- 其它类型，如json/js/rss可能还真不是以text开头的 -->
+						<value>*/*; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+		<mvc:argument-resolvers>
+			<bean class="com.zrx.hr.web.method.CumstomJsonMapperArgumentResolver"></bean>
+<!-- 			<bean class="com.zrx.hr.common.web.argument.TspRequestArgumentResolver" /> -->
+<!-- 			<bean class="com.zrx.hr.common.web.argument.SSOLoginUserArgumentResolver" /> -->
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+	
+	<mvc:default-servlet-handler/>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.zrx.hr.common.web.interceptor.SqlInjectInterceptor"/>			
+		</mvc:interceptor>
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**"/> -->
+<!-- 			<bean class="com.zrx.hr.common.web.interceptor.RequestTokenInterceptor"/>			 -->
+<!-- 		</mvc:interceptor> -->
+		
+	</mvc:interceptors>
+	
+	<mvc:cors>
+        <mvc:mapping path="/**" allowed-origins="*" allow-credentials="true" max-age="1800" allowed-methods="GET,POST,OPTIONS"/>
+    </mvc:cors>
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<property name="maxUploadSize" value="5242880"/>
+	</bean>
+    
+    <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+    
+    <bean class="com.zrx.hr.web.method.ResponseJsonExceptionResolver">
+        <property name="messageConverter" ref="jsonMessageConverter" />
+    </bean>
+</beans> 

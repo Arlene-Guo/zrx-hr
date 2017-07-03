@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.school.mapper.SchoolMapper">
+
+	<sql id="schoolTable">
+		school
+	</sql>
+	
+	<sql id="schoolFields">
+		`id`, `ranking`, `school_name` as schoolName, `create_time` as createTime, `del_flag` as delFlag		
+	</sql>
+	
+	<sql id="searchSchoolListCondition">
+		<if test="school.schoolName != null">AND `school_name` LIKE CONCAT('%', #{school.schoolName}, '%')</if>
+	</sql>
+	
+	<sql id="limitSchoolCondition">
+		<if test="school.isPage == null">
+			LIMIT #{school.start}, #{school.limit}
+		</if>
+	</sql>
+
+	<resultMap id="school" type="com.zrx.hr.school.domain.vo.School"></resultMap>
+	
+    <select id="findSchools" resultMap="school">
+        SELECT
+           <include refid="schoolFields"></include>
+        FROM  <include refid="schoolTable"></include>
+        where 1=1 AND del_flag=0
+        	<include refid="searchSchoolListCondition"></include>        		
+        ORDER BY `create_time` desc
+        <include refid="limitSchoolCondition"></include>        
+    </select>
+    
+           
+</mapper>

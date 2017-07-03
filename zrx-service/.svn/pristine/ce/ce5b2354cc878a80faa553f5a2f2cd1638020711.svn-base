@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.interviewer.mapper.InterviewArrangementsMapper">
+
+	<sql id="interviewArrangementsTable">
+		interview_arrangements
+	</sql>
+	
+	<sql id="interviewArrangementsFields">
+		`id`, `order_id`, `type`, `interviewer_id`, `interviewer_name`, `interviewer_time`,
+		`interviewer_type`,`interviewer_count`, `remarks` ,`create_time`, `del_flag`
+	</sql>
+	
+	<sql id="searchInterviewArrangementsListCondition">
+		<if test="interviewArrangements.id != null">AND `id` = #{interviewArrangements.id}</if>
+	</sql>
+	
+	<sql id="limitInterviewArrangementsCondition">
+		<if test="interviewArrangements.isPage == null">
+			LIMIT #{interviewArrangements.start}, #{interviewArrangements.limit}
+		</if>
+	</sql>
+
+	<resultMap id="interviewArrangements" type="com.zrx.hr.interviewer.domain.vo.InterviewArrangements"></resultMap>
+	
+	<insert id="saveOrUpdateInterviewArrangements" keyProperty="id" useGeneratedKeys="true">
+		<selectKey keyProperty="count" resultType="java.lang.Integer" order="BEFORE">
+			SELECT COUNT(1) FROM <include refid="interviewArrangementsTable"></include>
+			WHERE id = #{interviewArrangements.id}
+		</selectKey>
+		<if test="count == 0">
+			INSERT INTO <include refid="interviewArrangementsTable"></include> 
+			
+			<trim prefix="(" suffix=")" suffixOverrides="," >
+				<if test="interviewArrangements.interviewOrderId != null">order_id,</if>
+				<if test="interviewArrangements.type != null">type,</if>
+				<if test="interviewArrangements.interviewerId != null">interviewer_id,</if>
+				<if test="interviewArrangements.interviewerName != null">interviewer_name,</if>
+				<if test="interviewArrangements.interviewerTime != null">interviewer_time,</if>
+				<if test="interviewArrangements.interviewerType != null">interviewer_type,</if>
+				<if test="interviewArrangements.interviewerCount != null">interviewer_count,</if>
+				<if test="interviewArrangements.remarks != null">remarks,</if>
+				create_time
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides="," >
+				<if test="interviewArrangements.interviewOrderId != null">#{interviewArrangements.interviewOrderId},</if>
+				<if test="interviewArrangements.type != null">#{interviewArrangements.type},</if>
+				<if test="interviewArrangements.interviewerId != null">#{interviewArrangements.interviewerId},</if>
+				<if test="interviewArrangements.interviewerName != null">#{interviewArrangements.interviewerName},</if>
+				<if test="interviewArrangements.interviewerTime != null">#{interviewArrangements.interviewerTime},</if>
+				<if test="interviewArrangements.interviewerType != null">#{interviewArrangements.interviewerType},</if>
+				<if test="interviewArrangements.interviewerCount != null">#{interviewArrangements.interviewerCount},</if>
+				<if test="interviewArrangements.remarks != null">#{interviewArrangements.remarks},</if>
+				NOW()
+			</trim>
+			<!-- (
+				`order_id`, `type`, `interviewer_id`, `interviewer_name`, `interviewer_time`,
+				`interviewer_type`,`interviewer_count`, `remarks`, `create_time`
+			)
+			VALUES (
+				#{interviewArrangements.interviewOrderId}, 
+				#{interviewArrangements.type}, 
+				#{interviewArrangements.interviewerId}, 
+				#{interviewArrangements.interviewerName}, 
+				#{interviewArrangements.interviewerTime}, 
+				#{interviewArrangements.interviewerType}, 
+				#{interviewArrangements.interviewerCount}, 
+				#{interviewArrangements.remarks}, 
+				NOW()
+			) -->
+		</if>
+		<if test="count > 0">
+			UPDATE <include refid="interviewArrangementsTable"></include>
+			<set> 
+			<if test="interviewArrangements.interviewOrderId != null">`order_id` = #{interviewArrangements.interviewOrderId},</if>
+			<if test="interviewArrangements.type != null">`type` = #{interviewArrangements.type},</if>
+			<if test="interviewArrangements.interviewerId != null">`interviewer_id` = #{interviewArrangements.interviewerId},</if>
+			<if test="interviewArrangements.interviewerName != null">`interviewer_name` = #{interviewArrangements.interviewerName},</if>
+			<if test="interviewArrangements.interviewerTime != null">`interviewer_time` = #{interviewArrangements.interviewerTime},</if>
+			<if test="interviewArrangements.interviewerType != null">`interviewer_type` = #{interviewArrangements.interviewerType},</if>
+			<if test="interviewArrangements.interviewerCount != null">`interviewer_count` = #{interviewArrangements.interviewerCount},</if>
+			<if test="interviewArrangements.remarks != null">`remarks` = #{interviewArrangements.remarks},</if>
+			<if test="interviewArrangements.delFlag != null">`del_flag` = #{interviewArrangements.delFlag},</if>
+			`op_time` = NOW()
+			</set>
+			WHERE id = #{interviewArrangements.id}
+		</if>
+	</insert>
+
+    <select id="findInterviewArrangementList" resultMap="interviewArrangements">
+        SELECT
+           <include refid="interviewArrangementsFields"></include>
+        FROM  <include refid="interviewArrangementsTable"></include>
+        where 1=1 AND del_flag=0
+        	<include refid="searchInterviewArrangementsListCondition"></include>        		
+        ORDER BY `create_time` desc
+        <include refid="limitInterviewArrangementsCondition"></include>        
+    </select>
+    
+    <select id="arrangementCount" resultType="java.lang.Integer">
+    	SELECT COUNT(1) FROM 
+    	(SELECT
+		  order_id
+		FROM <include refid="interviewArrangementsTable"></include>
+		WHERE 1=1
+			<if test="interviewArrangements.interviewerId != null">AND `interviewer_id` = #{interviewArrangements.interviewerId}</if>
+			<if test="interviewArrangements.interviewerName != null">AND `interviewer_name` = #{interviewArrangements.interviewerName}</if>
+			<if test="interviewArrangements.interviewerTime != null">AND `interviewer_time` = #{interviewArrangements.interviewerTime}</if>
+			<if test="interviewArrangements.interviewerType != null">AND `interviewer_type` = #{interviewArrangements.interviewerType}</if>
+		GROUP BY order_id) AS temp;
+    </select>
+    
+           
+</mapper>

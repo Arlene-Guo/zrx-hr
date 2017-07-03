@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrx.hr.duties.mapper.DutiesMapper">
+
+	<sql id="dutiesTable">
+		duties
+	</sql>
+	
+	<sql id="dutiesFields">
+		`id`, `duties_name` as dutiesName, `duties_number` as dutiesNumber, `description`, `duties_type` as dutiesType, 
+		`recruits_counts` as recruitsCounts, `create_time` as createTime, `del_flag` as delFlag
+	</sql>
+	
+	<sql id="searchDutiesListCondition">
+		<if test="duties.id != null">AND `id` = #{duties.id}</if>
+		<if test="duties.dutiesName != null and duties.dutiesName != ''">AND `duties_name` = #{duties.dutiesName}</if>        
+        <if test="duties.dutiesType != null and duties.dutiesType != ''">AND `duties_type` = #{duties.dutiesType}</if>
+        <if test="duties.delFlag != null">AND `del_flag` = #{duties.delFlag}</if>	
+	</sql>
+	
+	<sql id="limitDutiesCondition">
+		<if test="duties.isPage == null">
+			LIMIT #{duties.start}, #{duties.limit}
+		</if>
+	</sql>
+
+	<resultMap id="duties" type="com.zrx.hr.duties.domain.vo.Duties"></resultMap>
+	
+	<resultMap id="dutiesListDto" type="com.zrx.hr.duties.domain.dto.DutiesListDto"></resultMap>
+	
+	<insert id="saveOrUpdateDuties" keyProperty="id" useGeneratedKeys="true">
+		<selectKey keyProperty="count" resultType="java.lang.Integer" order="BEFORE">
+			SELECT COUNT(1) FROM <include refid="dutiesTable"></include>
+			WHERE id = #{duties.id}
+		</selectKey>
+		<if test="count == 0">
+			INSERT INTO <include refid="dutiesTable"></include> 
+			<trim prefix="(" suffix=")" suffixOverrides="," >
+				<if test="duties.dutiesName != null">duties_name,</if>
+				<if test="duties.dutiesNumber != null">duties_number,</if>
+				<if test="duties.description != null">description,</if>
+				<if test="duties.dutiesType != null">duties_type,</if>
+				<if test="duties.recruitsCounts != null">recruits_counts,</if>
+				create_time
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides="," >
+				<if test="duties.dutiesName != null">#{duties.dutiesName},</if>
+				<if test="duties.dutiesNumber != null">#{duties.dutiesNumber},</if>
+				<if test="duties.description != null">#{duties.description},</if>
+				<if test="duties.dutiesType != null">#{duties.dutiesType},</if>
+				<if test="duties.recruitsCounts != null">#{duties.recruitsCounts},</if>
+				NOW()
+			</trim>
+		</if>
+		<!-- <if test="count == 0">
+			INSERT INTO <include refid="dutiesTable"></include> 
+			(`duties_name`, `duties_number`, `description`, `duties_type`, `recruits_counts`, `create_time`)
+			VALUES (
+				#{duties.dutiesName}, 
+				#{duties.dutiesNumber}, 
+				#{duties.description}, 
+				#{duties.dutiesType}, 
+				#{duties.recruitsCounts},
+				NOW()
+			)
+		</if> -->
+		<if test="count > 0">
+			UPDATE <include refid="dutiesTable"></include>
+			<set> 
+			`op_time` = NOW(),
+			<if test="duties.dutiesName != null">`duties_name` = #{duties.dutiesName},</if>
+			<if test="duties.dutiesNumber != null">`duties_number` = #{duties.dutiesNumber},</if>
+			<if test="duties.description != null">`description` = #{duties.description},</if>
+			<if test="duties.dutiesType != null">`duties_type` = #{duties.dutiesType},</if>
+			<if test="duties.recruitsCounts != null">`recruits_counts` = #{duties.recruitsCounts},</if>
+			<if test="duties.delFlag != null">`del_flag` = #{duties.delFlag},</if>
+			</set>
+			WHERE id = #{duties.id}
+		</if>
+	</insert>
+
+    <select id="searchDutiesList" resultMap="dutiesListDto">
+        SELECT
+           <include refid="dutiesFields"></include>
+        FROM  <include refid="dutiesTable"></include>
+        where 1=1
+        	<include refid="searchDutiesListCondition"></include>        		
+        ORDER BY `create_time` desc
+        <include refid="limitDutiesCondition"></include>        
+    </select>
+    
+           
+</mapper>

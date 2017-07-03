@@ -1,0 +1,95 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="Bookmark" href="/favicon.ico">
+		<link rel="Shortcut Icon" href="/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/H-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/H-ui.admin.css" />
+		<link rel="stylesheet" type="text/css" href="../../lib/Hui-iconfont/1.0.8/iconfont.css" />
+		<title>基本设置</title>
+	</head>
+
+	<body>
+		<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+			<span class="c-gray en">&gt;</span> 面试官
+			<span class="c-gray en">&gt;</span> 面试安排
+			<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+		</nav>
+		<div class="container-fluid">
+			<fieldset id="tourSearch">
+				<legend>面试安排搜索</legend>
+			<span>
+				应聘者姓名：
+				<input name="interviewerName" type="text" placeholder="" style="width:158px;"/>
+			</span>
+			<span>
+				面试时间：
+				<input name="interviewerTime" id="initInterviewerTime" type="text" onfocus="WdatePicker()" id="" class="input-text Wdate" style="width:120px;">
+			</span>
+			<span>
+				状态查询：
+			<select name="temp" id="state" style="border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);width:158px;">
+				<option value="">请选择</option>
+				<option value="1">已通过</option>
+				<option value="2">未通过</option>
+				<option value="3">待反馈</option>
+				<option value="4">已发offer</option>
+				<option value="5">待定</option>
+				<option value="6">待发</option>
+			</select>
+		</span>
+			<span>
+				<a id="tourSearchBtn" class="btn btn-primary"> <i class="icon-search"></i>
+					搜索
+				</a>
+			</span>
+			</fieldset>
+		</div>
+		<div class="container-fluid mt-20">
+			<div id="list">
+				<div style="position: relative;">
+					<div id="tableList"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!--_footer 作为公共模版分离出去-->
+		<script type="text/javascript" src="../../lib/jquery/1.9.1/jquery.min.js"></script>
+		<script src="../../modules/importCss.js"></script>
+		<script src="../../modules/importJS.js"></script>
+		<script type="text/javascript" src="../../lib/layer/2.4/layer.js"></script>
+		<script type="text/javascript" src="../../static/js/H-ui.min.js"></script>
+		<script type="text/javascript" src="../../static/js/H-ui.admin.js"></script>
+		<script type="text/javascript" src="../../lib/My97DatePicker/4.8/WdatePicker.js"></script>
+		<script src="../../static/js/interviewer/interviewer-arrange.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				$('.skin-minimal input').iCheck({
+					checkboxClass: 'icheckbox-blue',
+					radioClass: 'iradio-blue',
+					increaseArea: '20%'
+				});
+				$.Huitab("#tab-system .tabBar span", "#tab-system .tabCon", "current", "click", "0");
+
+			});
+
+			function article_edit(title, url, id, w, h) {
+				var index = layer.open({
+					type: 2,
+					title: title,
+					content: url
+				});
+				layer.full(index);
+			}
+		</script>
+		<!--/请在上方写此页面业务相关的脚本-->
+	</body>
+
+</html>
